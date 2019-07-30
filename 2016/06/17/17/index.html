@@ -1,15 +1,847 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='/img/wx_pic.jpg' />
+  </div>
+  <meta charset="utf-8">
+  
+  <title>使用impress.js打造酷炫PPT演示文稿教程 | 程序小兵</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近受人之拖给即将毕业的学生做个小讲座，谈谈职业规划，面试技巧，抛弃了传统的PPT格式，给他们带来酷炫点的文稿演示。 这里只是个库使用的教程，该ppt是html形式，所以下面就html的布局进行了分解讲解  欢迎到此一游 这里能让你进一步学习你感兴趣的东西">
+<meta name="keywords" content="it,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用impress.js打造酷炫PPT演示文稿教程">
+<meta property="og:url" content="https://ittomato.github.io/2016/06/17/17/index.html">
+<meta property="og:site_name" content="程序小兵">
+<meta property="og:description" content="最近受人之拖给即将毕业的学生做个小讲座，谈谈职业规划，面试技巧，抛弃了传统的PPT格式，给他们带来酷炫点的文稿演示。 这里只是个库使用的教程，该ppt是html形式，所以下面就html的布局进行了分解讲解  欢迎到此一游 这里能让你进一步学习你感兴趣的东西">
+<meta property="og:updated_time" content="2018-05-10T01:00:26.805Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用impress.js打造酷炫PPT演示文稿教程">
+<meta name="twitter:description" content="最近受人之拖给即将毕业的学生做个小讲座，谈谈职业规划，面试技巧，抛弃了传统的PPT格式，给他们带来酷炫点的文稿演示。 这里只是个库使用的教程，该ppt是html形式，所以下面就html的布局进行了分解讲解  欢迎到此一游 这里能让你进一步学习你感兴趣的东西">
+  
+    <link rel="alternative" href="/atom.xml" title="程序小兵" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/img/head.jpg">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: true
+      }
+  </script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Panjie.Yan</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">专注区块链研究</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives">所有文章</a></li>
+                        
+                            <li><a href="/about">捐助</a></li>
+                        
+                            <li><a href="/tags">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                            
+                                <a class="fl facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                            
+                                <a class="fl google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/hyperledger/" style="font-size: 20px;">hyperledger</a> <a href="/tags/ide/" style="font-size: 10px;">ide</a> <a href="/tags/it/" style="font-size: 20px;">it</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/oracle/" style="font-size: 16.67px;">oracle</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/thinking/" style="font-size: 13.33px;">thinking</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/心念/" style="font-size: 10px;">心念</a> <a href="/tags/程序小兵/" style="font-size: 16.67px;">程序小兵</a> <a href="/tags/诗歌/" style="font-size: 10px;">诗歌</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://ittomato.lofter.com/">程序小兵</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">自由职业者、极客、程序小兵</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">专注区块链研究</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives">所有文章</a></li>
+                
+                    <li><a href="/about">捐助</a></li>
+                
+                    <li><a href="/tags">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                    
+                        <a class="facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                    
+                        <a class="google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                    
+                </div>
+            </nav>
+        </header>                
     </div>
-    <%- partial('_partial/after-footer') %>
+</nav>
+      <div class="body-wrap"><article id="post-17" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/17/17/" class="article-date">
+      <time datetime="2016-06-17T11:34:21.000Z" itemprop="datePublished">2016-06-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用impress.js打造酷炫PPT演示文稿教程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/it/">it</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>最近受人之拖给即将毕业的学生做个小讲座，谈谈职业规划，面试技巧，抛弃了传统的PPT格式，给他们带来酷炫点的文稿演示。</p>
+<p>这里只是个库使用的教程，该ppt是html形式，所以下面就html的布局进行了分解讲解</p>
+<hr>
+<p>欢迎到此一游</p>
+<p>这里能让你进一步学习你感兴趣的东西</p>
+<a id="more"></a>
+<pre><code>                           ____                  
+                        _.&#39; :  `._               
+                    .-.&#39;`.  ;   .&#39;`.-.           
+           __      / : ___\ ;  /___ ; \      __  
+         ,&#39;_ &quot;&quot;=-.:__;&quot;.-.&quot;;: :&quot;.-.&quot;:__;.-=&quot;&quot; _`,
+         :&#39; `.t&quot;&quot;=-.. &#39;&lt;@.`;_  &#39;,@:` ..-=&quot;&quot;j.&#39; `;
+              `:-.._J &#39;-.-&#39;L__ `-.-&#39; L_..-;&#39;     
+                &quot;-.__ ;  .-&quot;  &quot;-.  : __.-&quot;       
+                    L &#39; /.======.\ &#39; J           
+                     &quot;-.   &quot;__&quot;   .-&quot;            
+                    __.l&quot;-:_JL_;-&quot;;.__           
+                 .-j/&#39;.;  ;&quot;&quot;&quot;&quot;  / .&#39;\&quot;-.        
+               .&#39; /:`. &quot;-.:     .-&quot; .&#39;;  `.      
+            .-&quot;  / ;  &quot;-. &quot;-..-&quot; .-&quot;  :    &quot;-.   
+         .+&quot;-.  : :      &quot;-.__.-&quot;      ;-._   \  
+         ; \  `.; ;                    : : &quot;+. ;
+         :  ;   ; ;                    : ;  : \:
+         ;  :   ; :                    ;:   ;  :
+        : \  ;  :  ;                  : ;  /  ::
+        ;  ; :   ; :                  ;   :   ;:
+        :  :  ;  :  ;                : :  ;  : ;
+        ;\    :   ; :                ; ;     ; ;
+        : `.&quot;-;   :  ;              :  ;    /  ;
+         ;    -:   ; :              ;  : .-&quot;   :
+         :\     \  :  ;            : \.-&quot;      :
+          ;`.    \  ; :            ;.&#39;_..-=  / ;
+          :  &quot;-.  &quot;-:  ;          :/.&quot;      .&#39;  :
+           \         \ :          ;/  __        :
+            \       .-`.\        /t-&quot;&quot;  &quot;:-+.   :
+             `.  .-&quot;    `l    __/ /`. :  ; ; \  ;
+               \   .-&quot; .-&quot;-.-&quot;  .&#39; .&#39;j \  /   ;/
+                \ / .-&quot;   /.     .&#39;.&#39; ;_:&#39;    ;  
+                 :-&quot;&quot;-.`./-.&#39;     /    `.___.&#39;   
+                       \ `t  ._  /               
+                        &quot;-.t-._:&#39;                
+</code></pre><p>因此，你将会了解如何使用impress.js的库</p>
+<p>第一步，也是最重要的一步就是你需先读此份源码，了解impress.js是如何通过html 和 css的组合来build的</p>
+<p>相信我，你仅需要很少的html\css的知识点就能很好的使用impress.js。</p>
+<p>更重要的事，你会成为设计师，这里没有缺省的样式与布局，你需要通过你手工去设计和建造。</p>
+<hr>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=1024&quot; /&gt;
+    &lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;
+    &lt;title&gt;这里是标题|程序小兵&lt;/title&gt;
+
+    &lt;meta name=&quot;description&quot; content=&quot;impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com.&quot; /&gt;
+    &lt;meta name=&quot;author&quot; content=&quot;Bartek Szopka&quot; /&gt;
+
+    &lt;link href=&quot;http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic&quot; rel=&quot;stylesheet&quot; /&gt;
+</code></pre><p>impress.js并不需要依赖额外的stylesheets。它会添加他自身需要的样式来工作。</p>
+<p>这个下面的包含的样式仅仅是给目前的演示例子使用。打开它去了解Impress.js类是如何在你目前演示中一步一步使用它。<br> 但是，我并不想让你直接用在你的演示中。</p>
+<p>为了更具创造性打造属于你的演示。我们不想所有的impress.js演示都看起来一样。</p>
+<pre><code>    &lt;link href=&quot;css/impress-demo.css&quot; rel=&quot;stylesheet&quot; /&gt;
+
+    &lt;link rel=&quot;shortcut icon&quot; href=&quot;favicon.png&quot; /&gt;
+    &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;apple-touch-icon.png&quot; /&gt;
+
+&lt;/head&gt;
+</code></pre><p>body的元素是被impress.js用来设置一些有用的类名–允许你发现演示的兼容性和状态是用CSS还是其他scripts。</p>
+<p>第一个非常有用的类则是 <code>impress-not-supported</code>.这个类作用是那些浏览器不支持impress.js的特征。因此<br>需要补充一些回退（向下兼容的）的样式在你的CSS文件中。</p>
+<p>没有必要手工去添加这个元素。如果脚本检查到本浏览器不大友好的支持Impress.js，会自动添加进去，但是把他保存在此html里<br>意味着使用者在没有javascript时，同样会得到向下兼容的样式</p>
+<p>当impress.js检测到所有浏览器支持所有的特征时，这个类将会被移除。</p>
+<p>在body元素的这个类同样依赖当前演示的步骤。更多的细节随后会介绍。</p>
+<pre><code>&lt;body class=&quot;impress-not-supported&quot;&gt;
+</code></pre><p>下面的fallback-message的属性仅仅在impress-not-supported属性被设置时才能显示。</p>
+<pre><code>&lt;div class=&quot;fallback-message&quot;&gt;
+    &lt;p&gt;你们的浏览器不 &lt;b&gt;不支持&lt;/b&gt;impress.js, 因此，你目前的演示仅仅是个极简的版本&lt;/p&gt;
+    &lt;p&gt;为了有更好的体验，请下载最新的 &lt;b&gt;Chrome&lt;/b&gt;, &lt;b&gt;Safari&lt;/b&gt; or &lt;b&gt;Firefox&lt;/b&gt; 浏览器.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre><p>下面就是用Impress.js的核心代码了。</p>
+<p>这是你演示步骤的包装。在这个要素中，所有impress.js其他的事都会发生。不必是一个<code>&lt;div&gt;</code>，仅仅<code>id</code>值是非常重要的。</p>
+<p>你现在可能还不需要它，但是这里有一些配置选项需要设置在这个element中。</p>
+<p>为了改变slides之间切换的时间段，可以使用<code>data-transition-duration=&quot;2000&quot;</code>语句来赋予一个数字毫秒值，缺省为1000ms(1秒)。</p>
+<p>你也可以通过赋值<code>data-perspective=&quot;500&quot;</code>一个数字像素来控制透明度的属性，缺省为1000。如果你不想要任何3D效果的话，可以设置为0.</p>
+<p>你如果确定你自己理解CSS演示的工作原理想改变此值，可以来开发者论坛<a href="https://developer.mozilla.org/en/CSS/perspective" target="_blank" rel="external">perspective</a></p>
+<p>但是，我想说，你现在不需要用到它，所以别担心。在这个tag里的拐角，马上就会有一些简单但有趣的东西。</p>
+<pre><code>&lt;div id=&quot;impress&quot;&gt;
+</code></pre><p>这里是趣事发生的开始</p>
+<p>每一个演示的步骤必须在<code>#impress</code>里，且类名为<code>step</code>。这些step元素会被impress.js用来定位、旋转、缩放，其视觉效果通过camera作用将每一步的演示中展示出来。</p>
+<p>通过data属性来传递定位信息。</p>
+<p>在下面的例子中，我们在step元素中通过<code>data-x=-1000</code>和<code>data-y=-1500</code>来指定x和y的位置属性值。</p>
+<p>意味着元素画布的中心点将会在x = -1000px 和 y = -1500px 所确定的位置中。</p>
+<p>这时的它还不能旋转和缩放 。       </p>
+<pre><code>    &lt;div id=&quot;bored&quot; class=&quot;step slide&quot; data-x=&quot;-1000&quot; data-y=&quot;-1500&quot;&gt;
+        &lt;q&gt;Aren’t you just &lt;b&gt;bored&lt;/b&gt; with all those slides-based presentations?&lt;/q&gt;
+    &lt;/div&gt;
+</code></pre><p>在这步的id属性是用来标识URL唯一值，但是它是可选的。如果它没有定义，会有个缺省值<code>step-N</code>。</p>
+<p>下面的例子将会是第二步了</p>
+<p>你也可以在连接后直接用<code>#step-2</code>来直接定位到这一步，方便快捷了。</p>
+<p>请注意，这么写<code>#/step-2</code>（带斜线）也是可以正常工作的，但是不推荐这么写。用典型的<code>id</code>基准链接，如<code>#step-2</code>，可确保在向下兼容模式中都可以使用。</p>
+<pre><code>    &lt;div class=&quot;step slide&quot; data-x=&quot;0&quot; data-y=&quot;-1500&quot;&gt;
+        &lt;q&gt;Don’t you think that presentations given &lt;strong&gt;in modern browsers&lt;/strong&gt; shouldn’t &lt;strong&gt;copy the limits&lt;/strong&gt; of ‘classic’ slide decks?&lt;/q&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;step slide&quot; data-x=&quot;1000&quot; data-y=&quot;-1500&quot;&gt;
+        &lt;q&gt;Would you like to &lt;strong&gt;impress your audience&lt;/strong&gt; with &lt;strong&gt;stunning visualization&lt;/strong&gt; of your talk?&lt;/q&gt;
+    &lt;/div&gt;
+</code></pre><p>接下来的元素将会被缩放。</p>
+<p>同样，我们使用<code>data-</code>属性值，这次该属性值为<code>data-scale=&quot;4&quot;</code>，意味着这个元素值将会被放大4倍。</p>
+<p>在切换演示中视图中，意味着它不得不切换缩放4次，以保障其他页面的正常大小。        </p>
+<pre><code>    &lt;div id=&quot;title&quot; class=&quot;step&quot; data-x=&quot;0&quot; data-y=&quot;0&quot; data-scale=&quot;4&quot;&gt;
+        &lt;span class=&quot;try&quot;&gt;then you should try&lt;/span&gt;
+        &lt;h1&gt;impress.js&lt;sup&gt;*&lt;/sup&gt;&lt;/h1&gt;
+        &lt;span class=&quot;footnote&quot;&gt;&lt;sup&gt;*&lt;/sup&gt; no rhyme intended&lt;/span&gt;
+    &lt;/div&gt;
+</code></pre><p>接下来要介绍的元素是旋转。</p>
+<p>同样，标记也不会让人觉得奇怪，就是<code>data-</code>开头，我们用<code>data-rotate=&quot;90&quot;</code>属性，意味着这个元素将会被顺时针旋转90度。</p>
+<pre><code>    &lt;div id=&quot;its&quot; class=&quot;step&quot; data-x=&quot;850&quot; data-y=&quot;3000&quot; data-rotate=&quot;90&quot; data-scale=&quot;5&quot;&gt;
+        &lt;p&gt;It’s a &lt;strong&gt;presentation tool&lt;/strong&gt; &lt;br/&gt;
+        inspired by the idea behind &lt;a href=&quot;http://prezi.com&quot;&gt;prezi.com&lt;/a&gt; &lt;br/&gt;
+        and based on the &lt;strong&gt;power of CSS3 transforms and transitions&lt;/strong&gt; in modern browsers.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;big&quot; class=&quot;step&quot; data-x=&quot;3500&quot; data-y=&quot;2100&quot; data-rotate=&quot;180&quot; data-scale=&quot;6&quot;&gt;
+        &lt;p&gt;visualize your &lt;b&gt;big&lt;/b&gt; &lt;span class=&quot;thoughts&quot;&gt;thoughts&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+</code></pre><p>现在我们来整写更加让人激动人心的！我们添加3D模式。</p>
+<p>同样用<code>data-x</code>和<code>data-y</code>，你可以在z坐标轴上使用属性<code>data-z</code>定义位置。</p>
+<p>下面的例子中我们用<code>data-z=&quot;-3000&quot;</code>，意味着这个元素将被离我们3000像素远的地方被定位到。</p>
+<pre><code>    &lt;div id=&quot;tiny&quot; class=&quot;step&quot; data-x=&quot;2825&quot; data-y=&quot;2325&quot; data-z=&quot;-3000&quot; data-rotate=&quot;300&quot; data-scale=&quot;1&quot;&gt;
+        &lt;p&gt;and &lt;b&gt;tiny&lt;/b&gt; ideas&lt;/p&gt;
+    &lt;/div&gt;
+</code></pre><p>下面这里并没有介绍信的data属性，取而代之的事文本的动画效果。     </p>
+<p>在所有步骤的最起始位置授予future类属性，意味着它将不会再被访问到。</p>
+<p>当你的演示文稿移动到有<code>future</code>标签的步骤变为<code>present</code>类型时，就说这一一步工作的动画效果了：文本移动到有<code>present</code>类型的步骤。</p>
+<p>最后，当演示从单元元素离开<code>present</code>的属性类后，<code>past</code>类将会替代。</p>
+<p>基本上，每一步都有3个属性类：<code>future</code>、<code>present</code>和<code>past</code>。仅仅是当前步骤才是<code>present</code>属性值。</p>
+<pre><code>    &lt;div id=&quot;ing&quot; class=&quot;step&quot; data-x=&quot;3500&quot; data-y=&quot;-850&quot; data-rotate=&quot;270&quot; data-scale=&quot;6&quot;&gt;
+        &lt;p&gt;by &lt;b class=&quot;positioning&quot;&gt;positioning&lt;/b&gt;, &lt;b class=&quot;rotating&quot;&gt;rotating&lt;/b&gt; and &lt;b class=&quot;scaling&quot;&gt;scaling&lt;/b&gt; them on an infinite canvas&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;imagination&quot; class=&quot;step&quot; data-x=&quot;6700&quot; data-y=&quot;-300&quot; data-scale=&quot;6&quot;&gt;
+        &lt;p&gt;the only &lt;b&gt;limit&lt;/b&gt; is your &lt;b class=&quot;imagination&quot;&gt;imagination&lt;/b&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;source&quot; class=&quot;step&quot; data-x=&quot;6300&quot; data-y=&quot;2000&quot; data-rotate=&quot;20&quot; data-scale=&quot;4&quot;&gt;
+        &lt;p&gt;want to know more?&lt;/p&gt;
+        &lt;q&gt;&lt;a href=&quot;http://github.com/bartaz/impress.js&quot;&gt;use the source&lt;/a&gt;, Luke!&lt;/q&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;one-more-thing&quot; class=&quot;step&quot; data-x=&quot;6000&quot; data-y=&quot;4000&quot; data-scale=&quot;2&quot;&gt;
+        &lt;p&gt;one more thing...&lt;/p&gt;
+    &lt;/div&gt;
+</code></pre><p>最后一步将展现impress.js的强大</p>
+<p>你不仅仅能用3D来设置属性原形，还能通过任意角度旋转它。<br>下面将会旋转x轴-40度，y轴10度。</p>
+<p>你也可以选择用<code>data-rotate-z</code>属性来选择z轴。它也有上面同样的效果特效。</p>
+<pre><code>&lt;div id=&quot;its-in-3d&quot; class=&quot;step&quot; data-x=&quot;6200&quot; data-y=&quot;4300&quot; data-z=&quot;-100&quot; data-rotate-x=&quot;-40&quot; data-rotate-y=&quot;10&quot; data-scale=&quot;2&quot;&gt;
+&lt;p&gt;&lt;span class=&quot;have&quot;&gt;have&lt;/span&gt; &lt;span class=&quot;you&quot;&gt;you&lt;/span&gt; &lt;span class=&quot;noticed&quot;&gt;noticed&lt;/span&gt; &lt;span class=&quot;its&quot;&gt;it’s&lt;/span&gt; &lt;span class=&quot;in&quot;&gt;in&lt;/span&gt; &lt;b&gt;3D&lt;sup&gt;*&lt;/sup&gt;&lt;/b&gt;?&lt;/p&gt;
+&lt;span class=&quot;footnote&quot;&gt;* beat that, prezi ;)&lt;/span&gt;
+&lt;/div&gt;
+</code></pre><p>So to summarize of all the possible attributes used to position presentation steps, we have:<br>总结所有能被用于定位设置演示步骤的可能属性，我们有：</p>
+<ul>
+<li>data-x, data-y , data-z 他们定义了元素的中心点，默认值为0.</li>
+<li>data-rotate-x, data-rotate-y, data-rotate-z , data-rotate 他们定义了指定轴的角度旋转，默认值为0.data-rotate 和data-rotate-z有同样的效果。</li>
+<li>data-scale 定义了元素的缩放，默认为1。</li>
+</ul>
+<p>这些值在Impress.js里用于CSS的转换函数，更多CSS转换可查看文档 <a href="https://developer.mozilla.org/en/CSS/transform" target="_blank" rel="external">https://developer.mozilla.org/en/CSS/transform</a></p>
+<pre><code>    &lt;div id=&quot;overview&quot; class=&quot;step&quot; data-x=&quot;3000&quot; data-y=&quot;1500&quot; data-scale=&quot;10&quot;&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre><p>这里和Impress.js并没有任何的关联。</p>
+<p>但是他能向你展示如何更创造性的展示impress.js的特性。</p>
+<pre><code>&lt;div class=&quot;hint&quot;&gt;
+    &lt;p&gt;Use a spacebar or arrow keys to navigate&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt;
+if (&quot;ontouchstart&quot; in document.documentElement) {
+    document.querySelector(&quot;.hint&quot;).innerHTML = &quot;&lt;p&gt;Tap on the left or right to navigate&lt;/p&gt;&quot;;
+}
+&lt;/script&gt;
+</code></pre><p>相当重要的最后一部分：</p>
+<p>为了使得上面的所有描述都能正常真正的工作，你必须在本页包含impress.js文件，我非常鼓励先把inpress.js文件压缩变小。</p>
+<p>在这里，我仅仅包含了脚本的所有源码，为的是让它能有更多的可读内容。</p>
+<p>同时，你也必须去调用impress().init()函数初始化Impress.js的演示在文档的最后部分：不仅仅是个好的习惯，更是为了整个文档准备的必须做的步骤。</p>
+<pre><code>&lt;script src=&quot;js/impress.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;impress().init();&lt;/script&gt;
+</code></pre><p>这个<code>impress()</code>函数同时提供了让你访问控制演示的API接口，仅仅通过保存初始化的结果，如:</p>
+<pre><code>var api = impress();
+</code></pre><p>初始化完毕后，你可以调用下面3个函数：</p>
+<pre><code>api.init();//初始化
+api.next();//移动到下一个演示
+api.prev();//移动到上一个演示
+api.got(idx|id|element,[duration]);
+</code></pre><p>当然，你也可以简单的调用<code>impress()</code>来获取API对象，例如<code>impress().next()</code>。不用担心，它不会重新初始化的。</p>
+<p>–&gt;</p>
+<pre><code>&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>现在，你或多或少已经知道了你打造Impress演示的所有事情，但是在你开始之前…</p>
+<p>哦，对了，你已经从github里clone了代码下来了？</p>
+<p>你已经开始在记事本编辑器打开了？</p>
+<p>住手，现在！！！</p>
+<p>这并不是你创建的很了不起的演示，这仅仅是个代码。要实现你的idea你先在你脑海中设想出来。</p>
+<p>所以，如果你想打造壮观的演示文稿，拿出笔和纸出来，关掉电脑。</p>
+<p>素描、绘画、写作。</p>
+<p>在纸上根据你的ideas做头脑风暴。尝试去打造你喜欢的演示的思维导图。这样会让你越来越接近你等会想要用impress.js来建造布局的演示文稿。</p>
+<p>当你在纸上已经完成了你的文稿后，再回到代码编辑来。因为早期code并没有什么意义，你只会在浪费时间在定位上做无用的战斗</p>
+<p>如果你认为我疯了，请你找到<code>Presentation Zen</code>这本专辑书，它旨在关于创造极好的、迷人的演示文稿。</p>
+<p>好好考虑下。如果你没什么兴趣说一说的话，也行是Impress.js并没有帮助到你。</p>
+<hr>
+<p>你是否读到这里了？</p>
+<p>真的吗？</p>
+<p>我很感动！我很想亲自感谢你读到这里！</p>
+<p>可以考虑下我的建议，抽出时间，给自己泡杯茶、咖啡、或者其他你想喝的饮料。开始打造你自己的impress文稿PPT。</p>
+<p>完。</p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+  <!-- /上述代码 -->
+  
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      \(^o^)/
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+      
+    
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+    
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+        
+       <br>
+
+    <a href="/img/weixin_pay_qr.png" title="用微信扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/weixin_pay_qr.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+        
+          
+
+    <a href="/img/ali_pay_qr.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/ali_pay_qr.png" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+  
+
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/06/17/17/">使用impress.js打造酷炫PPT演示文稿教程</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Panjie.Yan 的个人博客">Panjie.Yan</a></p>
+        <p><span>发布时间:</span>2016年06月17日 - 19时34分</p>
+        <p><span>最后更新:</span>2018年05月10日 - 09时00分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/17/17/" title="使用impress.js打造酷炫PPT演示文稿教程">https://ittomato.github.io/2016/06/17/17/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ittomato.github.io/2016/06/17/17/　　作者: Panjie.Yan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2016/06/20/18/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          使用nginx反向代码配置网站教程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/13/restify文档/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">restify打造强悍的REST类的Web Service系统</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/06/17/17/" data-title="使用impress.js打造酷炫PPT演示文稿教程" data-url="https://ittomato.github.io/2016/06/17/17/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"null"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/06/20/18/" title="上一篇: 使用nginx反向代码配置网站教程">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/06/13/restify文档/" title="下一篇: restify打造强悍的REST类的Web Service系统">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/20181217/">子墨与杰</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/04/hyperledger composer的cryptogen配置文件详解/">Hyperledger Composer的cryptogen、configtxgen等配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/01/Hyperledger Composer的建模语言详解/">Hyperledger Composer的建模语言详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/">Hyperledger Composer教程-创建、开发、发布智能合约</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/">基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/07/Hyperledger Fabric分布式账本介绍/">Hyperledger Fabric分布式账本介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/06/区块链微讲堂系列之hyperledger Fabric/">区块链微讲堂系列之hyperledger fabric</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/04/Hyperledger Fabri教程-安装blockchain explorer4/">Hyperledger Composer教程4-安装blockchain explorer</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/03/Hyperledger Fabric教程-安装开发环境3/">Hyperledger Composer教程3-安装开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/02/Hyperledger Fabric教程-安装前提条件2/">Hyperledger Composer教程2-安装前提条件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/01/Hyperledger Fabric教程-Hyperledger Fabric 的简介1/">Hyperledger Fabric教程1-Hyperledger Fabric 的简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/">Nginx反向代理解决产品不支持JDK1.6版本的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/SSL和TLS的技术原理浅谈/">SSL和TLS的技术原理浅谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/04/安全HTTPS/">安全HTTPS相关杂谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/03/TLS的握手流程/">TLS的握手流程-密钥协商与身份认证过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/20/18/">使用nginx反向代码配置网站教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/17/">使用impress.js打造酷炫PPT演示文稿教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/restify文档/">restify打造强悍的REST类的Web Service系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/16/">异步编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/24/13/">监控Linux用户登录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/11/">python爬虫 高清无码图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/10/">wall crontab 定时服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/9/">MyEclipse中右键项目Build Path菜单无子菜单的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/8/">ibatis 自定义sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/7/">代码关闭dblink产生的session会话连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/6/">多主机数据库表数据同步</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/5/">自动化adb push新大陆N900测试</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy;2014 - 2019 Panjie.Yan
+            </div>
+            <!--
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme 
+            </div>
+            -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >读者到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 109;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+<script>
+  (function(){
+  var bp = document.createElement('script');
+      bp.src = '//push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
   </div>
 </body>
 </html>

@@ -1,15 +1,743 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='/img/wx_pic.jpg' />
+  </div>
+  <meta charset="utf-8">
+  
+  <title>TLS的握手流程-密钥协商与身份认证过程 | 程序小兵</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在安全HTTPS中提及到的密钥协商（安全通讯前的准备工作）中，包含了身份认证和密钥协商2大过程如下，其中SSL协议包含记录协议和握手协议，在握手协议中协商通讯传输的的对称加密密码、压缩算法、加密算法等，具体的步骤如下： Step1s客户端往服务器端发ClientHello消息 消息特点：该消息是客户端连接服务器端时发送的第一个消息。 消息构成： (1).   使用的TLS协议版本。 (2).">
+<meta name="keywords" content="程序小兵">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TLS的握手流程-密钥协商与身份认证过程">
+<meta property="og:url" content="https://ittomato.github.io/2017/06/03/TLS的握手流程/index.html">
+<meta property="og:site_name" content="程序小兵">
+<meta property="og:description" content="在安全HTTPS中提及到的密钥协商（安全通讯前的准备工作）中，包含了身份认证和密钥协商2大过程如下，其中SSL协议包含记录协议和握手协议，在握手协议中协商通讯传输的的对称加密密码、压缩算法、加密算法等，具体的步骤如下： Step1s客户端往服务器端发ClientHello消息 消息特点：该消息是客户端连接服务器端时发送的第一个消息。 消息构成： (1).   使用的TLS协议版本。 (2).">
+<meta property="og:updated_time" content="2017-08-20T16:24:14.467Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TLS的握手流程-密钥协商与身份认证过程">
+<meta name="twitter:description" content="在安全HTTPS中提及到的密钥协商（安全通讯前的准备工作）中，包含了身份认证和密钥协商2大过程如下，其中SSL协议包含记录协议和握手协议，在握手协议中协商通讯传输的的对称加密密码、压缩算法、加密算法等，具体的步骤如下： Step1s客户端往服务器端发ClientHello消息 消息特点：该消息是客户端连接服务器端时发送的第一个消息。 消息构成： (1).   使用的TLS协议版本。 (2).">
+  
+    <link rel="alternative" href="/atom.xml" title="程序小兵" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/img/head.jpg">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: true
+      }
+  </script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Panjie.Yan</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">专注区块链研究</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives">所有文章</a></li>
+                        
+                            <li><a href="/about">捐助</a></li>
+                        
+                            <li><a href="/tags">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                            
+                                <a class="fl facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                            
+                                <a class="fl google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/hyperledger/" style="font-size: 20px;">hyperledger</a> <a href="/tags/ide/" style="font-size: 10px;">ide</a> <a href="/tags/it/" style="font-size: 20px;">it</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/oracle/" style="font-size: 16.67px;">oracle</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/thinking/" style="font-size: 13.33px;">thinking</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/心念/" style="font-size: 10px;">心念</a> <a href="/tags/程序小兵/" style="font-size: 16.67px;">程序小兵</a> <a href="/tags/诗歌/" style="font-size: 10px;">诗歌</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://ittomato.lofter.com/">程序小兵</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">自由职业者、极客、程序小兵</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">专注区块链研究</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives">所有文章</a></li>
+                
+                    <li><a href="/about">捐助</a></li>
+                
+                    <li><a href="/tags">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                    
+                        <a class="facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                    
+                        <a class="google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                    
+                </div>
+            </nav>
+        </header>                
     </div>
-    <%- partial('_partial/after-footer') %>
+</nav>
+      <div class="body-wrap"><article id="post-TLS的握手流程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/03/TLS的握手流程/" class="article-date">
+      <time datetime="2017-06-03T13:13:14.000Z" itemprop="datePublished">2017-06-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TLS的握手流程-密钥协商与身份认证过程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/程序小兵/">程序小兵</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>在安全HTTPS中提及到的密钥协商（安全通讯前的准备工作）中，包含了身份认证和密钥协商2大过程如下，其中SSL协议包含记录协议和握手协议，在握手协议中协商通讯传输的的对称加密密码、压缩算法、加密算法等，具体的步骤如下：</p>
+<h3 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h3><p>s客户端往服务器端发ClientHello消息</p>
+<p>消息特点：该消息是客户端连接服务器端时发送的第一个消息。</p>
+<p>消息构成：</p>
+<p>(1).   使用的TLS协议版本。</p>
+<p>(2).    随机数；用于计算对称加密时的“主密码”。</p>
+<p>(3).   会话ID；重连时有用，可为空。</p>
+<p>(4).   加密算法列表；客户端支持的加密算法列表，并按照客户端的偏好从前往后排。</p>
+<p>(5).   压缩算法列表；客户端支持的压缩算法列表，并按照客户端的偏好从前往后排。</p>
+<p>(6).   扩展信息。</p>
+<p>消息作用：用于发起会话、交换随机数、协商加密算法、压缩算法等。<br><a id="more"></a></p>
+<h3 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h3><p>服务器端验证ClientHello消息，主要验证：</p>
+<p>(1)   消息格式是否合法；</p>
+<p>(2)   能否至少支持客户端所列举的一个加密算法和一个压缩算法等。</p>
+<p>验证不通过则发送消息断开会话，验证通过则执行下一步。</p>
+<h3 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h3><p>服务器往客户端发送ServerHello消息。</p>
+<p>消息特点：该消息是服务器收到ClientHello后返回给客户端的第一个消息。</p>
+<p>消息构成：</p>
+<p>(1).   使用的TLS协议版本。</p>
+<p>(2).    随机数；用于计算对称加密时的“主密码”(这个随机数是服务器发送给客户端的,跟第一步骤的随机数不同,第一个是客户端发送给服务的)</p>
+<p>(3).   一个加密算法；服务器从客户端的加密算法列表中选中的一个加密算法。</p>
+<p>(4).   一个压缩算法；服务器从客户端的压缩算法列表中选中的一个压缩算法。</p>
+<p>(5).    会话ID；新建的唯一的会话ID。</p>
+<p>(6).   扩展信息。</p>
+<p>消息作用：用于交换随机数、确定加密算法、压缩算法等。</p>
+<h3 id="Step4"><a href="#Step4" class="headerlink" title="Step4"></a>Step4</h3><p>服务器往客户端发送Certificate消息。</p>
+<p>消息特点：该消息必须在ServerHello发送完后立即发送。如果是匿名协商，则无须发该消息。</p>
+<p>消息构成：</p>
+<p>(1).   证书列表；服务器的证书必须为证书列表的第一个，其后为签发服务器证书的证书，依次类推，最后一个证书为根证书签署的证书。根证书不在证书列表中，它是通过其他途径给到客户端的。(好多时候是浏览器预装好的)</p>
+<p>消息作用：发送服务器证书，或者证书链。</p>
+<h3 id="Step5"><a href="#Step5" class="headerlink" title="Step5"></a>Step5</h3><p>服务器往客户端发送ServerKeyExchange消息。</p>
+<p>消息特点：</p>
+<p>(1).   该消息必须在Certificate发送完后立即发送（如果是匿名协商，则该消息紧跟在ServerHello后）。</p>
+<p>(2).    该消息只有当Certificate消息无法提供足够信息让客户端完成“预主密码”交换时才需要。</p>
+<p>消息构成：</p>
+<p>(1).   密钥交换算法</p>
+<p>消息作用：该消息用于发送密钥交换算法给客户端。客户端可利用这些算法和服务器端完成“预主密码”的交换。</p>
+<h3 id="Step6"><a href="#Step6" class="headerlink" title="Step6"></a>Step6</h3><p>服务器往客户端发送CertificateRequest消息。</p>
+<p>消息特点：</p>
+<p>(1).    非匿名的服务器可通过该消息来要求客户端发送证书验证其身份。</p>
+<p>(2).   如果发送该消息则该消息在ServerKeyExchange发送完后立即发送(如果该次交互不发送ServerKeyExchange，则该消息紧跟Certificate消息)</p>
+<p>消息构成：</p>
+<p>(1).   证书类型列表；客户端的证书类型必须是证书类型列表中一种。</p>
+<p>(2).   签名和哈希算法列表；列举服务器所支持的签名算法和哈希算法。</p>
+<p>(3).   CA名字列表；服务器只接受的列表中所列出的CA所发行的证书，其他证书无法验证。</p>
+<p>消息作用：请求客户端发送证书验证其身份。(只有双向认证才需要,即服务器也需要认证客户端)</p>
+<h3 id="Step7"><a href="#Step7" class="headerlink" title="Step7"></a>Step7</h3><p>服务器往客户端发送ServerHelloDone消息。</p>
+<p>消息特点：</p>
+<p>消息构成：</p>
+<p>(1).   无消息内容。</p>
+<p>消息作用：该消息用来告诉客户端ServerHello以及附属消息都已发送完毕。发完该消息后服务器等待客户端消息。</p>
+<h3 id="Step8"><a href="#Step8" class="headerlink" title="Step8"></a>Step8</h3><p>客户端往服务器端发送ClientCertificate消息。</p>
+<p>消息特点：</p>
+<p>(1).    该消息仅当收到服务器CertificateRequest时才发送，即服务器要求验证客户端。</p>
+<p>(2).   如果发送该消息，则该消息必须是客户端收到ServerHelloDone消息后发往服务器的第一个消息。</p>
+<p>消息构成：</p>
+<p>(1).   证书列表。</p>
+<p>消息作用：发送客户端证书让服务器认证。(只有双向认证才需要,即服务器也需要认证客户端)</p>
+<h3 id="Step9"><a href="#Step9" class="headerlink" title="Step9"></a>Step9</h3><p>客户端往服务器端发送ClientKeyExchange消息。</p>
+<p>消息特点：</p>
+<p>(1).   如果有ClientCertificate消息，则该消息必须紧跟其后发送；如果无ClientCertificate消息，则该消息是收到ServerHelloDone消息后发往服务器的第一个消息。</p>
+<p>(2).   消息用RSA算法或者 Diffie-Hellman参数来协商预主密码。</p>
+<p>(3).    采用RAS加密的协商预主密码时，先生成一个长的随机数，由该随机数和客户端的TSL版本号构成一个结构体，用服务器证书的公钥（从服务器证书获得）对结构体进行加密，并把加密后的数据发给服务器。</p>
+<p>(4).   Diffie-Hellman参数协商比较复杂，暂不讨论。</p>
+<p>消息构成：因加密算法而异。</p>
+<p>消息作用：协商预主密码</p>
+<h3 id="Step10"><a href="#Step10" class="headerlink" title="Step10"></a>Step10</h3><p>客户端往服务器端发送CertificateVerify消息。</p>
+<p>消息特点：</p>
+<p>(1).   该消息只有当客户端证书有签名能力时(Tenfy:即有客户端证书，且证书是公钥和私钥都有的)发送，其它情况不发送（不含固定Diffie-Hellman参数的证书都有签名能力）。</p>
+<p>(2).   该消息必须在ClientKeyExchange发送完后立即发送。</p>
+<p>(3).   该消息采用客户端证书中的私钥信息进行加密。</p>
+<p>消息构成：</p>
+<p>(1).   把该消息之前的所有消息作为参数，用私钥对其进行签名得出一份数据，该数据即为消息体。</p>
+<p>消息作用：通过签名方式，验证客户端身份。</p>
+<h3 id="Step-11"><a href="#Step-11" class="headerlink" title="Step 11"></a>Step 11</h3><p>服务器用服务器私钥解密ClientKeyExchange消息得 “预主密码”。服务器和客户端用相同的算法计算“主密码”。主密码计算是根据预主密码、ClientHello中的随机数、ServerHello中的随机数得到的。计算好主密码后双方各向对方发送一个ChangeCipherSpec消息：</p>
+<p>消息特点：</p>
+<p>(1).   该消息必须在所有握手消息发送完之后，在Finished消息发送之前发送。</p>
+<p>(2).   该消息必须在接收完所有握手消息之后，在接收Finished消息之前收到。</p>
+<p>消息构成：</p>
+<p>(1).   确认消息。</p>
+<p>消息作用：确认采用刚才协商好的压缩算法、加密算法、主密码等来传输后继数据。</p>
+<h3 id="Step12"><a href="#Step12" class="headerlink" title="Step12"></a>Step12</h3><p>任意一方收到ChangeCipherSpec消息后告诉自己的Record Layer由读等待状态转为读状态，并采用新方式来传递数据。并往另外一端往发送Finished消息。</p>
+<p>消息特点：</p>
+<p>(1).   该消息是收到ChangeCipherSpec后立即发送的。</p>
+<p>(2).    该消息是首次采用刚才协商好的压缩算法、加密算法、主密码等来传输的数据。</p>
+<p>消息构成：</p>
+<p>(1).   把前面大部分的握手消息作为参数，用相同的算法计算得到的一个值。</p>
+<p>消息作用：完成压缩算法、加密算法等的协商，开始转入应用层数据传输。   </p>
+<h3 id="Step13"><a href="#Step13" class="headerlink" title="Step13"></a>Step13</h3><p>双方验证收到的消息，验证通过则开始应用层数据传输，否则断开。</p>
+<p>通讯过程中必须严格按上述说明来发送和接收消息。接收方接收消息后一旦发现：(1)消息遗漏，(2) 消息次序不对，(3) 消息格式（如加密格式）有误，(4) 消息内容有误，(5) 自身致命错误等，接收方立即通过Alert Protocol往发送方发送ErrorAlert消息，告诉对方终止此次会话。如果是能容忍的错误，则不发任何消息，以免对方主动断开会话。</p>
+<h3 id="若干重要验证说明"><a href="#若干重要验证说明" class="headerlink" title="若干重要验证说明"></a>若干重要验证说明</h3><ol>
+<li>客户端验证服务器的Certificate消息。主要验证内容为：</li>
+</ol>
+<p>(1).    服务器证书使用日期是否有效。</p>
+<p>(2).    发行服务器证书的CA是否可靠。</p>
+<p>(3).    发行者的公钥能否解开服务器证书上的“发行者数字签名”。</p>
+<p>(4).    服务器证书上的名称（如域名）是否和服务器实际名称匹配等（PHP中可以选择是否验证该选项）。</p>
+<p>(Tenfy: 这里可以看出,客户端验证服务的时候,只需要验证对应服务器证书的有效性即可,无需验证对应服务器是否拥有跟该证书一致的私钥)</p>
+<ol start="2">
+<li>服务器验证客户端的CertificateVerify消息。主要验证内容为：</li>
+</ol>
+<p>(1).    用客户端公钥能否解开客户端私钥加密的消息。</p>
+<p>(Tenfy:服务器验证客户端时候，还需要验证是否拥有跟证书对应的私钥)</p>
+<ol start="3">
+<li>服务器验证客户端的ClientCertificate消息。主要验证内容为：</li>
+</ol>
+<p>(1).    客户的证书使用日期是否有效。</p>
+<p>(2).    为客户提供证书的CA 是否可靠。</p>
+<p>(3).    发行CA 的公钥能否正确解开客户证书的发行CA的数字签名。</p>
+<p>(4).    检查客户的证书是否在证书废止列表（CRL）中。</p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+  <!-- /上述代码 -->
+  
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      \(^o^)/
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+      
+    
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+    
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+        
+       <br>
+
+    <a href="/img/weixin_pay_qr.png" title="用微信扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/weixin_pay_qr.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+        
+          
+
+    <a href="/img/ali_pay_qr.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/ali_pay_qr.png" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+  
+
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/06/03/TLS的握手流程/">TLS的握手流程-密钥协商与身份认证过程</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Panjie.Yan 的个人博客">Panjie.Yan</a></p>
+        <p><span>发布时间:</span>2017年06月03日 - 21时13分</p>
+        <p><span>最后更新:</span>2017年08月21日 - 00时24分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/06/03/TLS的握手流程/" title="TLS的握手流程-密钥协商与身份认证过程">https://ittomato.github.io/2017/06/03/TLS的握手流程/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ittomato.github.io/2017/06/03/TLS的握手流程/　　作者: Panjie.Yan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2017/06/04/安全HTTPS/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          安全HTTPS相关杂谈
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/20/18/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用nginx反向代码配置网站教程</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step1"><span class="toc-number">1.</span> <span class="toc-text">Step1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step2"><span class="toc-number">2.</span> <span class="toc-text">Step2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step3"><span class="toc-number">3.</span> <span class="toc-text">Step3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step4"><span class="toc-number">4.</span> <span class="toc-text">Step4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step5"><span class="toc-number">5.</span> <span class="toc-text">Step5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step6"><span class="toc-number">6.</span> <span class="toc-text">Step6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step7"><span class="toc-number">7.</span> <span class="toc-text">Step7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step8"><span class="toc-number">8.</span> <span class="toc-text">Step8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step9"><span class="toc-number">9.</span> <span class="toc-text">Step9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step10"><span class="toc-number">10.</span> <span class="toc-text">Step10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-11"><span class="toc-number">11.</span> <span class="toc-text">Step 11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step12"><span class="toc-number">12.</span> <span class="toc-text">Step12</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step13"><span class="toc-number">13.</span> <span class="toc-text">Step13</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#若干重要验证说明"><span class="toc-number">14.</span> <span class="toc-text">若干重要验证说明</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2017/06/03/TLS的握手流程/" data-title="TLS的握手流程-密钥协商与身份认证过程" data-url="https://ittomato.github.io/2017/06/03/TLS的握手流程/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"null"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/06/04/安全HTTPS/" title="上一篇: 安全HTTPS相关杂谈">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/06/20/18/" title="下一篇: 使用nginx反向代码配置网站教程">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/20181217/">子墨与杰</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/04/hyperledger composer的cryptogen配置文件详解/">Hyperledger Composer的cryptogen、configtxgen等配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/01/Hyperledger Composer的建模语言详解/">Hyperledger Composer的建模语言详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/">Hyperledger Composer教程-创建、开发、发布智能合约</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/">基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/07/Hyperledger Fabric分布式账本介绍/">Hyperledger Fabric分布式账本介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/06/区块链微讲堂系列之hyperledger Fabric/">区块链微讲堂系列之hyperledger fabric</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/04/Hyperledger Fabri教程-安装blockchain explorer4/">Hyperledger Composer教程4-安装blockchain explorer</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/03/Hyperledger Fabric教程-安装开发环境3/">Hyperledger Composer教程3-安装开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/02/Hyperledger Fabric教程-安装前提条件2/">Hyperledger Composer教程2-安装前提条件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/01/Hyperledger Fabric教程-Hyperledger Fabric 的简介1/">Hyperledger Fabric教程1-Hyperledger Fabric 的简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/">Nginx反向代理解决产品不支持JDK1.6版本的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/SSL和TLS的技术原理浅谈/">SSL和TLS的技术原理浅谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/04/安全HTTPS/">安全HTTPS相关杂谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/03/TLS的握手流程/">TLS的握手流程-密钥协商与身份认证过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/20/18/">使用nginx反向代码配置网站教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/17/">使用impress.js打造酷炫PPT演示文稿教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/restify文档/">restify打造强悍的REST类的Web Service系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/16/">异步编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/24/13/">监控Linux用户登录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/11/">python爬虫 高清无码图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/10/">wall crontab 定时服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/9/">MyEclipse中右键项目Build Path菜单无子菜单的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/8/">ibatis 自定义sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/7/">代码关闭dblink产生的session会话连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/6/">多主机数据库表数据同步</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/5/">自动化adb push新大陆N900测试</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy;2014 - 2019 Panjie.Yan
+            </div>
+            <!--
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme 
+            </div>
+            -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >读者到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 109;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+<script>
+  (function(){
+  var bp = document.createElement('script');
+      bp.src = '//push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
   </div>
 </body>
 </html>

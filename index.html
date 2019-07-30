@@ -1,15 +1,1266 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='/img/wx_pic.jpg' />
+  </div>
+  <meta charset="utf-8">
+  
+  <title>程序小兵</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="程序小兵">
+<meta property="og:url" content="https://ittomato.github.io/index.html">
+<meta property="og:site_name" content="程序小兵">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程序小兵">
+  
+    <link rel="alternative" href="/atom.xml" title="程序小兵" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/img/head.jpg">
+  
+    
+    
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: true,
+          isPost: false,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: true
+      }
+  </script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Panjie.Yan</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">专注区块链研究</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives">所有文章</a></li>
+                        
+                            <li><a href="/about">捐助</a></li>
+                        
+                            <li><a href="/tags">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                            
+                                <a class="fl facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                            
+                                <a class="fl google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/hyperledger/" style="font-size: 20px;">hyperledger</a> <a href="/tags/ide/" style="font-size: 10px;">ide</a> <a href="/tags/it/" style="font-size: 20px;">it</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/oracle/" style="font-size: 16.67px;">oracle</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/thinking/" style="font-size: 13.33px;">thinking</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/心念/" style="font-size: 10px;">心念</a> <a href="/tags/程序小兵/" style="font-size: 16.67px;">程序小兵</a> <a href="/tags/诗歌/" style="font-size: 10px;">诗歌</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://ittomato.lofter.com/">程序小兵</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">自由职业者、极客、程序小兵</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">专注区块链研究</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives">所有文章</a></li>
+                
+                    <li><a href="/about">捐助</a></li>
+                
+                    <li><a href="/tags">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                    
+                        <a class="facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                    
+                        <a class="google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                    
+                </div>
+            </nav>
+        </header>                
     </div>
-    <%- partial('_partial/after-footer') %>
+</nav>
+      <div class="body-wrap">
+  
+    <article id="post-20181217" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/12/16/20181217/" class="article-date">
+      <time datetime="2018-12-16T07:52:41.000Z" itemprop="datePublished">2018-12-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/16/20181217/">子墨与杰</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>光暖暖而照<br>音靡靡而绕，<br>低眉含笑间，<br>你的深情<br>绚烂了三生石上的一见倾心<br>今生，<br>你为高山，我为流水，<br>长风为歌，幽弦清音，<br>水流脉脉，岭秀倾情。<br>你一袭言语<br>温柔了我的眉弯，<br>心舟过处，<br>是你的呼唤柔婉了我的一帘幽梦<br>从此，以闺女每天成长的足迹为证<br>晓露痴缠，星月为凭，<br>所有的心事旖旎，<br>所有的呢喃软语，<br>都希望，你只为了她，<br>此情可待，一生付出。</p>
+<blockquote>
+<p>作者：shell</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心念/">心念</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/诗歌/">诗歌</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- /上述代码 -->
+  
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      \(^o^)/
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+      
+    
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+    
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+        
+       <br>
+
+    <a href="/img/weixin_pay_qr.png" title="用微信扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/weixin_pay_qr.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+        
+          
+
+    <a href="/img/ali_pay_qr.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/ali_pay_qr.png" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-hyperledger composer的cryptogen配置文件详解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/06/04/hyperledger composer的cryptogen配置文件详解/" class="article-date">
+      <time datetime="2018-06-04T13:13:14.000Z" itemprop="datePublished">2018-06-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/04/hyperledger composer的cryptogen配置文件详解/">Hyperledger Composer的cryptogen、configtxgen等配置文件详解</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>fabric的启动需要用到的配置文件，是采用cryptogen、configtxgen二进制工具产生的，因此，在介绍配置信息时，优先需要了解这2个工具的来源。</p>
+</blockquote>
+<ul>
+<li>cryptogen: 用于产生orderer、peer节点所需要的证书；</li>
+<li>configtxgen: 用于产生交易配置文件，在Orderer创建传世块、Peer加入channel时候需要用到的配置文件；</li>
+</ul>
+<p>可见，以上2个工具的重要性；为了获得者2个工具，这边提供了2种获取方式：</p>
+<ol>
+<li>编译源码方式；</li>
+<li>下载二进制文件方式；</li>
+</ol>
+<blockquote>
+<p>前者可以通过下载源码，直接进行编译，适用于fabric的orderer、peer等都是通过下载源码直接编译获得，因此编译所需要的各种工具及配置也已经齐全，在这个前提下进行编译得到cryptogen、configtxgen很是方便；</p>
+</blockquote>
+<blockquote>
+<p>若使用的orderer、peer等都是采用官方的hyperledger/orderer等镜像进行直接启动的，则建议直接下载对应平台、版本编译好的二进制文件。</p>
+</blockquote>
+<p>本文采用<strong>方式2</strong></p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hyperledger/">hyperledger</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2018/06/04/hyperledger composer的cryptogen配置文件详解/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hyperledger Composer的建模语言详解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/06/01/Hyperledger Composer的建模语言详解/" class="article-date">
+      <time datetime="2018-06-01T13:13:14.000Z" itemprop="datePublished">2018-06-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/01/Hyperledger Composer的建模语言详解/">Hyperledger Composer的建模语言详解</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>待续…</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hyperledger/">hyperledger</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- /上述代码 -->
+  
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      \(^o^)/
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+      
+    
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+    
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+        
+       <br>
+
+    <a href="/img/weixin_pay_qr.png" title="用微信扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/weixin_pay_qr.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+        
+          
+
+    <a href="/img/ali_pay_qr.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/ali_pay_qr.png" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hyperledger Fabric教程-创建、开发、发布智能合约" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/" class="article-date">
+      <time datetime="2018-05-28T13:13:14.000Z" itemprop="datePublished">2018-05-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/">Hyperledger Composer教程-创建、开发、发布智能合约</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p>本文的<code>Hyperledger Fabric</code>版本为<code>v1.1</code>， <code>Hyperledger Composer</code>的版本为<code>v0.19.5</code>，而且必须已经完成『Hyperledger Fabric教程3-安装开发环境』的安装。</p>
+<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>本教程基于<code>Hyperledger Fabric</code> + <code>Composer</code>开发『智能合约』程序并发布到链上，为了快速应用，本机运行于默认的例子，即单个peer、单个orderer的机制，以下是进程：</p>
+<pre><code class="java">CONTAINER ID        NAME                     CPU %               MEM USAGE / LIMIT     MEM %               NET
+1ed7283b08fa        peer0.org1.example.com   1.59%               28.93MiB / 1.925GiB   1.47%               40.1kB /
+f6d811ad71f0        ca.org1.example.com      0.00%               5.746MiB / 1.925GiB   0.29%               7.62kB /
+073d0d94c129        couchdb                  0.29%               92.36MiB / 1.925GiB   4.69%               24.5kB /
+269b305cf916        orderer.example.com      0.01%               4.848MiB / 1.925GiB   0.25%               20.8kB /
+</code></pre>
+<p>为了方便理解，本教程分为6个步骤完成整个智能合约的开发，分别如下：</p>
+<ol>
+<li>Step 1-创建智能合约框架</li>
+<li>Step 2-编写智能合约代码</li>
+<li>Step 3-生成智能合约归档</li>
+<li>Step 4-发布智能合约程序</li>
+<li>Step 5-生成REST服务端</li>
+<li>Step 6-生成Angular客户端</li>
+</ol>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hyperledger/">hyperledger</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-基于hlfv的区块链为底层搭建具体的业务网络架构教程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/" class="article-date">
+      <time datetime="2018-05-02T13:13:14.000Z" itemprop="datePublished">2018-05-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/">基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <blockquote>
+<p>采用hyperledger composer部署业务网络的教程，在已经搭建好区块链的基础底层架构后，需要在上面进行具体的业务需求定制，才能发挥区块链解决实际问题的根本需求。因此，搭建业务需求过程中，为了便捷高效，可通过以下4个步骤进行业务逻辑框架的搭建。</p>
+</blockquote>
+<ol>
+<li>创建业务网络的结构</li>
+<li>定义一个商业网络</li>
+<li>生成业务网络归档</li>
+<li>部署业务网络</li>
+</ol>
+<p>通过以上4个步骤，则可完成整个区块链+业务的迭代开发。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hyperledger/">hyperledger</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hyperledger Fabric分布式账本介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/07/Hyperledger Fabric分布式账本介绍/" class="article-date">
+      <time datetime="2018-02-07T13:13:14.000Z" itemprop="datePublished">2018-02-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/07/Hyperledger Fabric分布式账本介绍/">Hyperledger Fabric分布式账本介绍</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>Hyperledger Fabric是分布式账本解决方案的平台，支持模块化架构，提供高度的机密性，弹性，灵活性和可扩展性。它旨在支持不同组件的可插拔实现，并适应经济生态系统中存在的复杂性和复杂性。</p>
+<p>Hyperledger Fabric 提供独特的弹性和可扩展架构，区别于其他区块链解决方案。规划企业区块链的未来需要建立在完全审核的开源架构之上，而Hyperledger Fabric是很好的出发点。</p>
+<p>我们建议首次使用的用户首先阅读以下介绍的其余部分，以便熟悉区块链的工作方式以及Hyperledger Fabric的特定功能和组件。</p>
+<p>一旦舒适，或者您已经熟悉区块链和Hyperledger Fabric，请转到<a href="https://ittomato.github.io/2018/02/02/Hyperledger%20Fabric%E6%95%99%E7%A8%8B-%E5%AE%89%E8%A3%85%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B62/">入门</a>，并从这里探索演示，技术规范，API等。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hyperledger/">hyperledger</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2018/02/07/Hyperledger Fabric分布式账本介绍/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-区块链微讲堂系列之hyperledger Fabric" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/06/区块链微讲堂系列之hyperledger Fabric/" class="article-date">
+      <time datetime="2018-02-06T13:13:14.000Z" itemprop="datePublished">2018-02-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/06/区块链微讲堂系列之hyperledger Fabric/">区块链微讲堂系列之hyperledger fabric</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <blockquote>
+<p>收集了IBM对Hyperledger Fabric的区块公益教学视频，have fun~</p>
+</blockquote>
+<p>【区块链微讲堂系列 】<a href="http://v.youku.com/v_show/id_XMjU2OTQwOTE1Ng==.html?spm=a2h0j.8191423.module_basic_relation.5~5!2~5~5!10~5!2~1~3~A" target="_blank" rel="external">第一讲：区块链商用之道</a></p>
+<p>【区块链微讲堂系列 】<a href="http://v.youku.com/v_show/id_XMjYyMTU0MzEwMA==.html?spm=a2h0j.8191423.module_basic_relation.5~5!2~5~5!6~5!2~1~3~A" target="_blank" rel="external">第二讲：Hyperledger项目与社区概览</a></p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hyperledger/">hyperledger</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2018/02/06/区块链微讲堂系列之hyperledger Fabric/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hyperledger Fabri教程-安装blockchain explorer4" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/04/Hyperledger Fabri教程-安装blockchain explorer4/" class="article-date">
+      <time datetime="2018-02-04T13:13:14.000Z" itemprop="datePublished">2018-02-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/04/Hyperledger Fabri教程-安装blockchain explorer4/">Hyperledger Composer教程4-安装blockchain explorer</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>hyperledger explorer是一个简单但功能强大，易于使用，高度维护的开源浏览器，用于查看底层区块链网络上的活动。</p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><pre><code class="c">├── app                    fabric GRPC interface
+├── db             the mysql script and help class
+├── explorer_client        Web Ui
+├── first-network   Basic fabric network setup
+├── listener               websocket listener
+├── metrics                metrics about tx count per minute and block count per minute
+├── service                the service
+├── socket         push real time data to front end
+├── timer                  Timer to post information periodically  
+└── utils                  Various utility scripts
+</code></pre>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>以下是安装和运行超级用户资源管理器所需的软件依赖关系</p>
+<ul>
+<li>nodejs 6.9.x（请注意，v7.x尚不支持）</li>
+<li>MySQL 5.7或更高版本</li>
+<li>Hyperledger Explorer可与Hyperledger Fabric 1.0配合使用。安装以下软件依赖项来管理光纤网络。</li>
+<li>docker 17.06.2-ce [ <a href="https://www.docker.com/community-edition" target="_blank" rel="external">https://www.docker.com/community-edition</a> ]</li>
+<li>docker-compose 1.14.0 [ <a href="https://docs.docker.com/compose/" target="_blank" rel="external">https://docs.docker.com/compose/</a> ]
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hyperledger/">hyperledger</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2018/02/04/Hyperledger Fabri教程-安装blockchain explorer4/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hyperledger Fabric教程-安装开发环境3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/03/Hyperledger Fabric教程-安装开发环境3/" class="article-date">
+      <time datetime="2018-02-03T13:13:14.000Z" itemprop="datePublished">2018-02-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/03/Hyperledger Fabric教程-安装开发环境3/">Hyperledger Composer教程3-安装开发环境</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>按照这些说明获取<code>Hyperledger Composer</code>开发工具（主要用于创建业务网络）并站起来<code>Hyperledger Fabric</code>（主要用于在本地运行/部署您的业务网络）。请注意，您创建的业务网络也可以部署到其他环境（例如云平台）中的<code>Hyperledger Fabric</code>运行时。</p>
+<h2 id="在你开始之前"><a href="#在你开始之前" class="headerlink" title="在你开始之前"></a>在你开始之前</h2><p>确保您已按照安装先决条件中的说明安装了必需的<strong>前提条件</strong>。</p>
+<p>这些说明假定您尚未安装这些工具并在以前使用过。如果不是这种情况，那么在开始按照本指南进行操作之前，您可能需要检查以前的设置是否完全被破坏。</p>
+<p>为了提供灵活性并支持最大数量的开发，测试和部署场景，Composer作为一组组件提供，您可以使用npmCLI 进行安装和控制。这些说明将告诉你如何安装所有东西，然后如何控制你的开发环境。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hyperledger/">hyperledger</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2018/02/03/Hyperledger Fabric教程-安装开发环境3/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hyperledger Fabric教程-安装前提条件2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/02/Hyperledger Fabric教程-安装前提条件2/" class="article-date">
+      <time datetime="2018-02-02T13:13:14.000Z" itemprop="datePublished">2018-02-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/02/Hyperledger Fabric教程-安装前提条件2/">Hyperledger Composer教程2-安装前提条件</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="Ubuntu的"><a href="#Ubuntu的" class="headerlink" title="Ubuntu的"></a>Ubuntu的</h2><p>要运行<code>Hyperledger Composer</code>和<code>Hyperledger Fabric</code>，我们建议您至少拥有4Gb的内存，而且必须先安装此前提条件。</p>
+<p>以下是安装所需开发工具的先决条件：</p>
+<ul>
+<li>操作系统：<code>Ubuntu Linux 14.04 / 16.04 LTS（均为64位）</code>或<code>Mac OS 10.12</code></li>
+<li><code>Docker</code>引擎：版本17.03或更高</li>
+<li><code>Docker-Compose</code>：版本1.8或更高</li>
+<li>节点：8.9或更高（注意版本9不支持）</li>
+<li><code>npm</code>：v5.x</li>
+<li><code>git</code>：2.9.x或更高版本</li>
+<li><code>Python</code>：2.7.x</li>
+<li>您选择的代码编辑器，我们推荐<code>VSCode</code>。</li>
+</ul>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hyperledger/">hyperledger</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2018/02/02/Hyperledger Fabric教程-安装前提条件2/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
+  
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy;2014 - 2019 Panjie.Yan
+            </div>
+            <!--
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme 
+            </div>
+            -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >读者到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 109;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+<script>
+  (function(){
+  var bp = document.createElement('script');
+      bp.src = '//push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
   </div>
 </body>
 </html>

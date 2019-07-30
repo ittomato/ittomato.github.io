@@ -1,15 +1,784 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='/img/wx_pic.jpg' />
+  </div>
+  <meta charset="utf-8">
+  
+  <title>Nginx反向代理解决产品不支持JDK1.6版本的解决方案 | 程序小兵</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="某个项目在客户对接中，对JDK有要求，因与服务器的通信支持TLS1.1，且只有JDK1.7及以上版本支持TLS1.1，对于客户旧原有的系统不支持TLS1.1的JDK1.6的，存在不兼容问题。为了满足客户接入需求及不更改产品服务通信安全的前提下，引入了代理服务器作为转发节点，解决http-&amp;gt;https的转变。从而衍生出，适应于所有接入服务中需要将http-&amp;gt;https的转发请求的模式。">
+<meta name="keywords" content="周记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx反向代理解决产品不支持JDK1.6版本的解决方案">
+<meta property="og:url" content="https://ittomato.github.io/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/index.html">
+<meta property="og:site_name" content="程序小兵">
+<meta property="og:description" content="某个项目在客户对接中，对JDK有要求，因与服务器的通信支持TLS1.1，且只有JDK1.7及以上版本支持TLS1.1，对于客户旧原有的系统不支持TLS1.1的JDK1.6的，存在不兼容问题。为了满足客户接入需求及不更改产品服务通信安全的前提下，引入了代理服务器作为转发节点，解决http-&amp;gt;https的转变。从而衍生出，适应于所有接入服务中需要将http-&amp;gt;https的转发请求的模式。">
+<meta property="og:updated_time" content="2018-05-03T00:42:43.223Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nginx反向代理解决产品不支持JDK1.6版本的解决方案">
+<meta name="twitter:description" content="某个项目在客户对接中，对JDK有要求，因与服务器的通信支持TLS1.1，且只有JDK1.7及以上版本支持TLS1.1，对于客户旧原有的系统不支持TLS1.1的JDK1.6的，存在不兼容问题。为了满足客户接入需求及不更改产品服务通信安全的前提下，引入了代理服务器作为转发节点，解决http-&amp;gt;https的转变。从而衍生出，适应于所有接入服务中需要将http-&amp;gt;https的转发请求的模式。">
+  
+    <link rel="alternative" href="/atom.xml" title="程序小兵" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/img/head.jpg">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: true
+      }
+  </script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Panjie.Yan</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">专注区块链研究</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives">所有文章</a></li>
+                        
+                            <li><a href="/about">捐助</a></li>
+                        
+                            <li><a href="/tags">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                            
+                                <a class="fl facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                            
+                                <a class="fl google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/hyperledger/" style="font-size: 20px;">hyperledger</a> <a href="/tags/ide/" style="font-size: 10px;">ide</a> <a href="/tags/it/" style="font-size: 20px;">it</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/oracle/" style="font-size: 16.67px;">oracle</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/thinking/" style="font-size: 13.33px;">thinking</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/心念/" style="font-size: 10px;">心念</a> <a href="/tags/程序小兵/" style="font-size: 16.67px;">程序小兵</a> <a href="/tags/诗歌/" style="font-size: 10px;">诗歌</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://ittomato.lofter.com/">程序小兵</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">自由职业者、极客、程序小兵</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">专注区块链研究</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives">所有文章</a></li>
+                
+                    <li><a href="/about">捐助</a></li>
+                
+                    <li><a href="/tags">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                    
+                        <a class="facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                    
+                        <a class="google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                    
+                </div>
+            </nav>
+        </header>                
     </div>
-    <%- partial('_partial/after-footer') %>
+</nav>
+      <div class="body-wrap"><article id="post-Nginx反向代理解决安心签不支持JDK1.6版本的解决方案" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/" class="article-date">
+      <time datetime="2017-12-15T13:13:14.000Z" itemprop="datePublished">2017-12-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Nginx反向代理解决产品不支持JDK1.6版本的解决方案
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/周记/">周记</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>某个项目在客户对接中，对JDK有要求，因与服务器的通信支持TLS1.1，且只有JDK1.7及以上版本支持TLS1.1，对于客户旧原有的系统不支持TLS1.1的JDK1.6的，存在不兼容问题。为了满足客户接入需求及不更改产品服务通信安全的前提下，引入了代理服务器作为转发节点，解决http-&gt;https的转变。从而衍生出，适应于所有接入服务中需要将http-&gt;https的转发请求的模式。</p>
+</blockquote>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本教程通过安装<em>Nginx</em>软件、新建Nginx需要的<code>.crt</code>、<code>.key</code>、<code>.pem</code>格式的证书，再修改默认的Nginx的配置文件<code>Nginx.conf</code>。如果已经准备好Nginx所需环境及证书，则可直接查看<code>Nginx.conf</code>，具体步骤如下：<br><!-- MarkdownTOC --></p>
+<ul>
+<li>Nginx安装<ul>
+<li>安装Zlib</li>
+<li>安装Pcre库</li>
+<li>安装Openssl</li>
+<li>安装Nginx</li>
+</ul>
+</li>
+<li>Nginx配置https所需证书</li>
+<li>Nginx.conf配置文件<ul>
+<li>解决http-&gt;https转化</li>
+<li>解决https-&gt;http转化</li>
+</ul>
+</li>
+</ul>
+<!-- /MarkdownTOC -->
+<h3 id="Nginx安装"><a href="#Nginx安装" class="headerlink" title="Nginx安装"></a>Nginx安装</h3><p><em>Nginx</em>依赖以下模块，因此先安装一下依赖库，再最后安装<em>Nginx</em>：</p>
+<ul>
+<li><code>gzip</code>模块需要<code>zlib</code>库</li>
+<li><code>rewrite</code>模块需要<code>pcre</code>库</li>
+<li><code>ssl</code>功能需要<code>openssl</code>库</li>
+</ul>
+<a id="more"></a>
+<h4 id="安装Zlib"><a href="#安装Zlib" class="headerlink" title="安装Zlib"></a>安装Zlib</h4><ol>
+<li>获取<code>zlib</code>编译安装包，在<code>http://www.zlib.net/</code>上可以获取当前最新的版本。</li>
+<li>解压缩<code>zlib-xx.tar.gz</code>包。</li>
+<li>进入解压缩目录，执行<code>./configure</code>。</li>
+<li><code>make &amp; make install</code></li>
+</ol>
+<h4 id="安装Pcre库"><a href="#安装Pcre库" class="headerlink" title="安装Pcre库"></a>安装Pcre库</h4><ol>
+<li>获取<code>pcre</code>编译安装包，在<code>http://www.pcre.org/</code>上可以获取当前最新的版本</li>
+<li>解压缩<code>pcre-xx.tar.gz</code>包。</li>
+<li>进入解压缩目录，执行<code>./configure</code>。</li>
+<li><code>make &amp; make install</code></li>
+</ol>
+<h4 id="安装Openssl"><a href="#安装Openssl" class="headerlink" title="安装Openssl"></a>安装Openssl</h4><ol>
+<li>获取<code>openssl</code>编译安装包，在<code>http://www.openssl.org/source/</code>上可以获取当前最新的版本。</li>
+<li>解压缩<code>openssl-xx.tar.gz</code>包。</li>
+<li>进入解压缩目录，执行<code>./config</code>。</li>
+<li><code>make &amp; make install</code></li>
+</ol>
+<h4 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h4><ol>
+<li>获取<code>Nginx，在http://nginx.org/en/download.html</code>上可以获取当前最新的版本。</li>
+<li>解压缩<code>nginx-xx.tar.gz</code>包。</li>
+<li>进入解压缩目录，执行<code>./configure</code></li>
+<li><code>make &amp; make install</code></li>
+</ol>
+<p>若安装时找不到上述依赖模块，使用<code>--with-openssl=&lt;openssl_dir&gt;、--with-pcre=&lt;pcre_dir&gt;、--with-zlib=&lt;zlib_dir&gt;</code>指定依赖的模块目录。如已安装过，此处的路径为安装目录；若未安装，则此路径为编译安装包路径，nginx将执行模块的默认编译安装。</p>
+<pre><code class="bash">./configure --with-openssl=../openssl-1.0.1t --with-pcre=../pcre-8.40 --with-zlib=../zlib-1.2.11 –with-http_ssl_module
+</code></pre>
+<p>安装完毕后，最后的路径为：<code>/usr/local/nginx/sbin</code>。</p>
+<ol>
+<li>进入<code>cd /usr/local/nginx/sbin</code></li>
+<li>启动<em>nginx</em>：<code>./nginx</code></li>
+<li>验证<em>nginx</em>配置文件是否正确<code>./nginx -t</code></li>
+<li>重启<em>nginx</em>服务<code>./nginx -s reload</code></li>
+</ol>
+<p>浏览器中输入<code>http://localhost</code>可以验证是否安装启动成功。</p>
+<h3 id="Nginx配置https所需证书"><a href="#Nginx配置https所需证书" class="headerlink" title="Nginx配置https所需证书"></a>Nginx配置https所需证书</h3><p>默认已经安装了Openssl，若没有请自行转换为目标格式。正常情况下，运行中心提供的通信证书为<code>pfx</code>格式，但是Nginx使用的是<code>.key</code>和<code>.crt</code>。因此需要使用OpenSSL将<code>pfx</code>的文件转化为密钥文件<code>.key</code>和公钥文件<code>.crt</code>。将<code>pfx</code>文件放在OpenSSL的目录下(假定运行中心提供的文件为<code>sslcerttest.pfx</code>，打开OpenSSL执行以下命令:</p>
+<pre><code class="shell">openssl pkcs12 -in sslcerttest.pfx -nodes -out sslcerttest.pem
+openssl rsa -in sslcerttest.pem -out sslcerttest.key
+openssl x509 -in sslcerttest.pem -out sslcerttest.crt
+</code></pre>
+<p>得到的<code>sslcerttest.key</code>、<code>sslcerttest.pem</code>、<code>sslcerttest.crt</code>将作为<code>Nginx.conf</code>的配置文件所需证书文件的参数输入。</p>
+<h3 id="Nginx-conf配置文件"><a href="#Nginx-conf配置文件" class="headerlink" title="Nginx.conf配置文件"></a>Nginx.conf配置文件</h3><p>这里可以通过配置文件解决从http、https协议互换的问题。通常在运营中有以下对应背景：</p>
+<p><em>http-&gt;https</em>即，内部系统向外部系统进行报文请求时，统一走http协议，但是目标系统只支持https的协议，因此需要通过Nginx正向代理转发，则是<code>http-&gt;nginx-&gt;https</code></p>
+<p><em>https-&gt;http</em>即，外部系统访问内部系统时，统一走https协议，在进行访问者身份确认后，通过Nginx反向代理转发到内部系统，则是<code>https-&gt;nginx-&gt;http</code>。</p>
+<p>综上，通过在Nginx代理服务做为负载均衡，统一为内部系统配置验证身份的服务器证书。</p>
+<h4 id="解决http-gt-https转化"><a href="#解决http-gt-https转化" class="headerlink" title="解决http-&gt;https转化"></a>解决http-&gt;https转化</h4><p>在已经安装好的Nginx服务条件下，仅需修改<code>Nginx.conf</code>的配置文件，完美解决<code>http-&gt;https</code>。以下是经测试后的配置文件，供参考</p>
+<pre><code class="sql">worker_processes  1;
+events {
+    worker_connections  1024;
+}
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+    server {
+        listen       9090;                                      ##监听9090端口，可修改具体值
+        server_name  127.0.0.1;                                 ##监听本机IP，可修改具体值
+        location / {
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_redirect off;
+        proxy_ssl_certificate  sslcerttest.crt;                    ##服务器证书
+        proxy_ssl_certificate_key  sslcerttest.key;                ##服务器证书私钥
+        proxy_pass https://210.74.42.33:9443/FEP$request_uri;   ##产品服务URL 210.74.42.33:9443
+        proxy_ssl_verify off;
+        proxy_ssl_protocols  TLSv1.1;                           ##支持TLS1.1的协议
+        proxy_ssl_trusted_certificate  sslcerttest.pem;            ##证书链路径
+        proxy_ssl_verify_depth  10;
+        proxy_headers_hash_max_size 51200;
+        proxy_headers_hash_bucket_size 6400;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+}
+</code></pre>
+<h4 id="解决https-gt-http转化"><a href="#解决https-gt-http转化" class="headerlink" title="解决https-&gt;http转化"></a>解决https-&gt;http转化</h4><pre><code class="sql">worker_processes  1;
+events {
+    worker_connections  1024;
+}
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+    server {
+        listen       80;
+        server_name  localhost;
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+    server {
+        listen       88 ssl;
+        server_name  127.0.0.1;
+
+        ssl_certificate      localhost.crt;
+        ssl_certificate_key  localhost.key;
+        ssl_client_certificate cfca.crt;
+        ssl_verify_client on;
+        ssl_verify_depth 2;
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        error_log logs/ssslerror.log debug;
+
+        location / {
+            proxy_pass http://127.0.0.1:8080;
+             # proxy_set_header X-Real-IP $remote_addr;
+             proxy_set_header ssl_client_cert   $ssl_client_cert;
+             proxy_set_header ssl_client_serial $ssl_client_serial;
+             # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+}
+</code></pre>
+<p><em>广州分公司技术部敬上</em></p>
+<p>2017-12-16</p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+  <!-- /上述代码 -->
+  
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      \(^o^)/
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+      
+    
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+    
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+        
+       <br>
+
+    <a href="/img/weixin_pay_qr.png" title="用微信扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/weixin_pay_qr.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+        
+          
+
+    <a href="/img/ali_pay_qr.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/ali_pay_qr.png" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+  
+
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/">Nginx反向代理解决产品不支持JDK1.6版本的解决方案</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Panjie.Yan 的个人博客">Panjie.Yan</a></p>
+        <p><span>发布时间:</span>2017年12月15日 - 21时13分</p>
+        <p><span>最后更新:</span>2018年05月03日 - 08时42分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/" title="Nginx反向代理解决产品不支持JDK1.6版本的解决方案">https://ittomato.github.io/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ittomato.github.io/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/　　作者: Panjie.Yan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/02/01/Hyperledger Fabric教程-Hyperledger Fabric 的简介1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Hyperledger Fabric教程1-Hyperledger Fabric 的简介
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/14/SSL和TLS的技术原理浅谈/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SSL和TLS的技术原理浅谈</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx安装"><span class="toc-number">2.</span> <span class="toc-text">Nginx安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装Zlib"><span class="toc-number">2.1.</span> <span class="toc-text">安装Zlib</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装Pcre库"><span class="toc-number">2.2.</span> <span class="toc-text">安装Pcre库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装Openssl"><span class="toc-number">2.3.</span> <span class="toc-text">安装Openssl</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装Nginx"><span class="toc-number">2.4.</span> <span class="toc-text">安装Nginx</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx配置https所需证书"><span class="toc-number">3.</span> <span class="toc-text">Nginx配置https所需证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-conf配置文件"><span class="toc-number">4.</span> <span class="toc-text">Nginx.conf配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#解决http-gt-https转化"><span class="toc-number">4.1.</span> <span class="toc-text">解决http->https转化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决https-gt-http转化"><span class="toc-number">4.2.</span> <span class="toc-text">解决https->http转化</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/" data-title="Nginx反向代理解决产品不支持JDK1.6版本的解决方案" data-url="https://ittomato.github.io/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"null"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/02/01/Hyperledger Fabric教程-Hyperledger Fabric 的简介1/" title="上一篇: Hyperledger Fabric教程1-Hyperledger Fabric 的简介">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2017/08/14/SSL和TLS的技术原理浅谈/" title="下一篇: SSL和TLS的技术原理浅谈">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/20181217/">子墨与杰</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/04/hyperledger composer的cryptogen配置文件详解/">Hyperledger Composer的cryptogen、configtxgen等配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/01/Hyperledger Composer的建模语言详解/">Hyperledger Composer的建模语言详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/">Hyperledger Composer教程-创建、开发、发布智能合约</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/">基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/07/Hyperledger Fabric分布式账本介绍/">Hyperledger Fabric分布式账本介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/06/区块链微讲堂系列之hyperledger Fabric/">区块链微讲堂系列之hyperledger fabric</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/04/Hyperledger Fabri教程-安装blockchain explorer4/">Hyperledger Composer教程4-安装blockchain explorer</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/03/Hyperledger Fabric教程-安装开发环境3/">Hyperledger Composer教程3-安装开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/02/Hyperledger Fabric教程-安装前提条件2/">Hyperledger Composer教程2-安装前提条件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/01/Hyperledger Fabric教程-Hyperledger Fabric 的简介1/">Hyperledger Fabric教程1-Hyperledger Fabric 的简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/">Nginx反向代理解决产品不支持JDK1.6版本的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/SSL和TLS的技术原理浅谈/">SSL和TLS的技术原理浅谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/04/安全HTTPS/">安全HTTPS相关杂谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/03/TLS的握手流程/">TLS的握手流程-密钥协商与身份认证过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/20/18/">使用nginx反向代码配置网站教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/17/">使用impress.js打造酷炫PPT演示文稿教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/restify文档/">restify打造强悍的REST类的Web Service系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/16/">异步编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/24/13/">监控Linux用户登录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/11/">python爬虫 高清无码图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/10/">wall crontab 定时服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/9/">MyEclipse中右键项目Build Path菜单无子菜单的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/8/">ibatis 自定义sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/7/">代码关闭dblink产生的session会话连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/6/">多主机数据库表数据同步</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/5/">自动化adb push新大陆N900测试</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy;2014 - 2019 Panjie.Yan
+            </div>
+            <!--
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme 
+            </div>
+            -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >读者到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 109;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+<script>
+  (function(){
+  var bp = document.createElement('script');
+      bp.src = '//push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
   </div>
 </body>
 </html>

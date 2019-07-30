@@ -1,15 +1,786 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='/img/wx_pic.jpg' />
+  </div>
+  <meta charset="utf-8">
+  
+  <title>基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程 | 程序小兵</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="采用hyperledger composer部署业务网络的教程，在已经搭建好区块链的基础底层架构后，需要在上面进行具体的业务需求定制，才能发挥区块链解决实际问题的根本需求。因此，搭建业务需求过程中，为了便捷高效，可通过以下4个步骤进行业务逻辑框架的搭建。   创建业务网络的结构 定义一个商业网络 生成业务网络归档 部署业务网络  通过以上4个步骤，则可完成整个区块链+业务的迭代开发。">
+<meta name="keywords" content="hyperledger">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程">
+<meta property="og:url" content="https://ittomato.github.io/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/index.html">
+<meta property="og:site_name" content="程序小兵">
+<meta property="og:description" content="采用hyperledger composer部署业务网络的教程，在已经搭建好区块链的基础底层架构后，需要在上面进行具体的业务需求定制，才能发挥区块链解决实际问题的根本需求。因此，搭建业务需求过程中，为了便捷高效，可通过以下4个步骤进行业务逻辑框架的搭建。   创建业务网络的结构 定义一个商业网络 生成业务网络归档 部署业务网络  通过以上4个步骤，则可完成整个区块链+业务的迭代开发。">
+<meta property="og:updated_time" content="2018-06-04T15:23:52.172Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程">
+<meta name="twitter:description" content="采用hyperledger composer部署业务网络的教程，在已经搭建好区块链的基础底层架构后，需要在上面进行具体的业务需求定制，才能发挥区块链解决实际问题的根本需求。因此，搭建业务需求过程中，为了便捷高效，可通过以下4个步骤进行业务逻辑框架的搭建。   创建业务网络的结构 定义一个商业网络 生成业务网络归档 部署业务网络  通过以上4个步骤，则可完成整个区块链+业务的迭代开发。">
+  
+    <link rel="alternative" href="/atom.xml" title="程序小兵" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/img/head.jpg">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: true
+      }
+  </script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Panjie.Yan</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">专注区块链研究</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives">所有文章</a></li>
+                        
+                            <li><a href="/about">捐助</a></li>
+                        
+                            <li><a href="/tags">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                            
+                                <a class="fl facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                            
+                                <a class="fl google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/hyperledger/" style="font-size: 20px;">hyperledger</a> <a href="/tags/ide/" style="font-size: 10px;">ide</a> <a href="/tags/it/" style="font-size: 20px;">it</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/oracle/" style="font-size: 16.67px;">oracle</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/thinking/" style="font-size: 13.33px;">thinking</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/心念/" style="font-size: 10px;">心念</a> <a href="/tags/程序小兵/" style="font-size: 16.67px;">程序小兵</a> <a href="/tags/诗歌/" style="font-size: 10px;">诗歌</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://ittomato.lofter.com/">程序小兵</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">自由职业者、极客、程序小兵</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">专注区块链研究</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives">所有文章</a></li>
+                
+                    <li><a href="/about">捐助</a></li>
+                
+                    <li><a href="/tags">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                    
+                        <a class="facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                    
+                        <a class="google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                    
+                </div>
+            </nav>
+        </header>                
     </div>
-    <%- partial('_partial/after-footer') %>
+</nav>
+      <div class="body-wrap"><article id="post-基于hlfv的区块链为底层搭建具体的业务网络架构教程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/" class="article-date">
+      <time datetime="2018-05-02T13:13:14.000Z" itemprop="datePublished">2018-05-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hyperledger/">hyperledger</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>采用hyperledger composer部署业务网络的教程，在已经搭建好区块链的基础底层架构后，需要在上面进行具体的业务需求定制，才能发挥区块链解决实际问题的根本需求。因此，搭建业务需求过程中，为了便捷高效，可通过以下4个步骤进行业务逻辑框架的搭建。</p>
+</blockquote>
+<ol>
+<li>创建业务网络的结构</li>
+<li>定义一个商业网络</li>
+<li>生成业务网络归档</li>
+<li>部署业务网络</li>
+</ol>
+<p>通过以上4个步骤，则可完成整个区块链+业务的迭代开发。</p>
+<a id="more"></a>
+<h2 id="第一步-创建业务网络的结构"><a href="#第一步-创建业务网络的结构" class="headerlink" title="第一步-创建业务网络的结构"></a>第一步-创建业务网络的结构</h2><blockquote>
+<p>hyperledger composer的关键概念是商业网络定义（BND)，它主要是为区块链网络解决数据类型、事物逻辑和访问控制，要创建一个BND，我们需要创建一个合适的项目结构。最便捷的方法是通过yeoman生成骨架业务网络，这将创建包含业务网络所有的组件的目录：</p>
+</blockquote>
+<p>1、使用Yeoman创建一个骨架业务网络。此命令将需要业务网络名称，说明，作者姓名，作者电子邮件地址，许可证选择和命名空间。</p>
+<pre><code class="shell">yo hyperledger-composer:businessnetwork
+</code></pre>
+<p>2、输入<code>tutorial-network</code> 网络名称以及所需的描述信息，作者姓名和作者电子邮件。</p>
+<p>3、选择 Apache-2.0 作为许可证。</p>
+<p>4、选择<code>org.example.mynetwork</code>作为命名空间。</p>
+<p>5、选择 <code>No</code>当被问及是否生成一个空网络时。</p>
+<h2 id="第二步-定义一个商业网络"><a href="#第二步-定义一个商业网络" class="headerlink" title="第二步-定义一个商业网络"></a>第二步-定义一个商业网络</h2><blockquote>
+<p>通过composer 进行商业网络的代码开发</p>
+</blockquote>
+<p>业务网络由资产，参与者，交易，访问控制规则以及可选的事件和查询组成。在前面步骤中创建的骨架业务网络中，有一个<code>model（.cto）</code>文件，其中将包含业务网络中所有资产，参与者和事务的类定义。骨架业务网络还包含<code>permissions.acl</code>具有基本访问控制规则的访问控制文档，<code>logic.js</code>包含事务处理器功能的脚本文件以及<code>package.json</code>包含业务网络元数据的文件。</p>
+<h3 id="建模资产，参与者和交易"><a href="#建模资产，参与者和交易" class="headerlink" title="建模资产，参与者和交易"></a>建模资产，参与者和交易</h3><p>第一个要更新的文档是<code>model（.cto）</code>文件。该文件使用<code>Hyperledger</code> Composer建模语言编写。模型文件包含每类资产，交易，参与者和事件的定义。它隐含地扩展了建模语言文档中描述的<code>Hyperledger Composer</code>系统模型。</p>
+<p>1、打开<code>org.example.mynetwork.cto</code> 模型文件。</p>
+<p>2、用以下内容替换内容：</p>
+<pre><code class="shell">/**
+ * My commodity trading network
+ */
+namespace org.example.mynetwork
+asset Commodity identified by tradingSymbol {
+    o String tradingSymbol
+    o String description
+    o String mainExchange
+    o Double quantity
+    --&gt; Trader owner
+}
+participant Trader identified by tradeId {
+    o String tradeId
+    o String firstName
+    o String lastName
+}
+transaction Trade {
+    --&gt; Commodity commodity
+    --&gt; Trader newOwner
+}
+
+</code></pre>
+<p>3、保存您的更改<code>org.example.mynetwork.cto</code>。</p>
+<h3 id="添加JavaScript事务逻辑"><a href="#添加JavaScript事务逻辑" class="headerlink" title="添加JavaScript事务逻辑"></a>添加JavaScript事务逻辑</h3><p>在模型文件中，<code>Trade</code>定义了事务，指定与资产和参与者的关系。事务处理函数文件包含执行模型文件中定义的事务的JavaScript逻辑。</p>
+<p>该<code>Trade</code>交易旨在简单地接受<code>Commodity</code>正在交易的资产的标识符以及<code>Trader</code>要设置为新所有者的参与者的标识符。</p>
+<p>1、打开 <code>logic.js</code>脚本文件。<br>2、用以下内容替换内容：</p>
+<pre><code class="shell">/**
+ * Track the trade of a commodity from one trader to another
+ * @param {org.example.mynetwork.Trade} trade - the trade to be processed
+ * @transaction
+ */
+async function tradeCommodity(trade) {
+    trade.commodity.owner = trade.newOwner;
+    let assetRegistry = await getAssetRegistry(&#39;org.example.mynetwork.Commodity&#39;);
+    await assetRegistry.update(trade.commodity);
+}
+</code></pre>
+<p>3、保存您的更改<code>logic.js</code>。</p>
+<h3 id="添加访问控制"><a href="#添加访问控制" class="headerlink" title="添加访问控制"></a>添加访问控制</h3><p>1、替换文件中的以下访问控制规则 <code>permissions.acl</code> ：</p>
+<pre><code class="shell">/**
+ * Access control rules for tutorial-network
+ */
+rule Default {
+    description: &quot;Allow all participants access to all resources&quot;
+    participant: &quot;ANY&quot;
+    operation: ALL
+    resource: &quot;org.example.mynetwork.*&quot;
+    action: ALLOW
+}
+
+rule SystemACL {
+  description:  &quot;System ACL to permit all access&quot;
+  participant: &quot;ANY&quot;
+  operation: ALL
+  resource: &quot;org.hyperledger.composer.system.**&quot;
+  action: ALLOW
+}
+</code></pre>
+<p>2、保存您的更改<code>permissions.acl</code>。</p>
+<h2 id="第三步-生成业务网络归档"><a href="#第三步-生成业务网络归档" class="headerlink" title="第三步-生成业务网络归档"></a>第三步-生成业务网络归档</h2><p>1、使用命令行，导航到<code>tutorial-network</code>目录下，并运行以下命令：</p>
+<pre><code class="shell">composer archive create -t dir -n .
+</code></pre>
+<p>该命令运行后，<a href="mailto:tutorial-network@0.0.1.bna" target="_blank" rel="external">tutorial-network@0.0.1.bna</a>在该tutorial-network目录中创建了一个调用的业务网络存档文件。</p>
+<h2 id="第四步-部署业务网络"><a href="#第四步-部署业务网络" class="headerlink" title="第四步-部署业务网络"></a>第四步-部署业务网络</h2><p>创建.bna文件后，业务网络可以部署到Hyperledger Fabric实例。通常情况下，来自Fabric管理员的信息需要创建一个PeerAdmin身份，具有将链接代码安装到对等体的权限以及在composerchannel通道上启动链接代码的权限。但是，作为开发环境安装的一部分，PeerAdmin已经创建了一个身份。</p>
+<p>业务网络安装完成后，网络就可以启动。为了获得最佳实践，应该创建一个新的身份以在部署后管理业务网络。这个身份被称为网络管理员。</p>
+<h3 id="检索正确的凭证"><a href="#检索正确的凭证" class="headerlink" title="检索正确的凭证"></a>检索正确的凭证</h3><p>一个PeerAdmin有正确的凭据业务网络卡已为开发环境安装的一部分创建的。</p>
+<h3 id="部署业务网络"><a href="#部署业务网络" class="headerlink" title="部署业务网络"></a>部署业务网络</h3><p>将业务网络部署到Hyperledger Fabric需要在对等设备上安装Hyperledger Composer业务网络，然后才能启动业务网络，并且必须创建新参与者，身份和关联卡才能成为网络管理员。最后，必须导入网络管理员业务网卡才能使用，然后可以ping通网络以检查它是否正在响应。</p>
+<p>1、要从目录安装业务网络tutorial-network，请运行以下命令：</p>
+<pre><code>composer network install --card PeerAdmin@hlfv1 --archiveFile tutorial-network@0.0.1.bna
+</code></pre><p>该composer network install命令需要一个PeerAdmin业务网卡（在这种情况下，预先创建并导入一个网卡）以及.bna定义业务网络的文件路径。</p>
+<p>2、要启动业务网络，请运行以下命令：</p>
+<pre><code class="shell">composer network start --networkName tutorial-network --networkVersion 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+</code></pre>
+<p>该composer network start命令需要企业网卡，以及业务网络的管理员身份名称，业务网络的名称和版本以及要创建的文件的名称，以准备将其导入为业务网卡。</p>
+<p>3、要将网络管理员标识导入为可用的业务网卡，请运行以下命令：</p>
+<pre><code class="shell">composer card import --file networkadmin.card
+</code></pre>
+<p>该composer card import命令需要指定的文件名composer network start来创建卡片。</p>
+<p>4、要检查业务网络是否已成功部署，请运行以下命令以ping网络：</p>
+<pre><code class="shell">composer network ping --card admin@tutorial-network
+</code></pre>
+<p>该composer network ping命令需要使用企业网卡来识别要ping的网络。</p>
+<blockquote>
+<p>所有的执行命令，添加到一个<code>shell</code>脚本中，其中<code>bless-network</code>为具体的业务网络的名称，根据不同名字修改，<code>shell</code>脚本内容如下：</p>
+</blockquote>
+<pre><code class="shell">#!/bin/bash
+echo &quot;composer archive ...&quot;
+composer archive create -t dir -n .
+echo &quot;network install...&quot;
+composer network install --card PeerAdmin@hlfv1 --archiveFile bless-network@0.0.1
+.bna
+echo &quot;network start...&quot;
+composer network start --networkName bless-network --networkVersion 0.0.1 --netwo
+rkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file ne
+tworkadmin.card
+echo &quot;network import...&quot;
+composer card import --file networkadmin.card
+echo &quot;network ping...&quot;
+composer network ping --card admin@bless-network
+
+</code></pre>
+<h3 id="创建REST服务器"><a href="#创建REST服务器" class="headerlink" title="创建REST服务器"></a>创建REST服务器</h3><p>Hyperledger Composer可以基于业务网络生成定制的REST API。为了开发Web应用程序，REST API提供了一个有用的语言无关抽象层。<br>1、要创建REST API，请导航到 tutorial-network 目录并运行以下命令：</p>
+<pre><code class="shell">composer-rest-server
+</code></pre>
+<p>2、输入 admin@tutorial-network 作为名片。</p>
+<p>3、选择 决不询问是否在生成的API中使用名称空间时使用名称空间。</p>
+<p>4、选择 没有 当被问及是否保护生成的API。</p>
+<p>5、选择 是 当被问及是否启用事件发布时。</p>
+<p>6、选择 没有 当被问及是否启用TLS安全。</p>
+<p>生成的API连接到部署的区块链和业务网络。</p>
+<p>总命令为：</p>
+<pre><code class="shell">composer-rest-server -c admin@tutorial-network -n never -w true
+</code></pre>
+<h3 id="生成一个应用程序"><a href="#生成一个应用程序" class="headerlink" title="生成一个应用程序"></a>生成一个应用程序</h3><p>Hyperledger Composer还可以生成针对REST API运行的Angular 4应用程序。</p>
+<p>1、要创建您的Angular 4应用程序，请导航至 tutorial-network 目录并运行以下命令：</p>
+<pre><code class="shell">yo hyperledger-composer:angular
+</code></pre>
+<p>2、选择 是 当被要求连接到运行业务网络时。</p>
+<p>3、输入标准package.json问题（项目名称，说明，作者姓名，作者电子邮件，许可证）</p>
+<p>4、输入 admin@tutorial-network 为商业网卡。</p>
+<p>5、选择连接到现有的REST API</p>
+<p>6、输入 <a href="http://localhost" target="_blank" rel="external">http://localhost</a> 为REST服务器地址。</p>
+<p>7、输入 3000 用于服务器端口。</p>
+<p>8、选择名称空间不被使用</p>
+<p>9、然后，Angular generator将为该项目创建脚手架并安装所有依赖项。要运行该应用程序，请导航到您的角度项目目录并运行 npm start 。这将引发一个针对您的REST API运行的Angular 4应用程序 <a href="http://localhost:4200" target="_blank" rel="external">http://localhost:4200</a> 。</p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+  <!-- /上述代码 -->
+  
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      \(^o^)/
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+      
+    
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+    
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+        
+       <br>
+
+    <a href="/img/weixin_pay_qr.png" title="用微信扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/weixin_pay_qr.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+        
+          
+
+    <a href="/img/ali_pay_qr.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/ali_pay_qr.png" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+  
+
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/">基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Panjie.Yan 的个人博客">Panjie.Yan</a></p>
+        <p><span>发布时间:</span>2018年05月02日 - 21时13分</p>
+        <p><span>最后更新:</span>2018年06月04日 - 23时23分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/" title="基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程">https://ittomato.github.io/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ittomato.github.io/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/　　作者: Panjie.Yan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Hyperledger Composer教程-创建、开发、发布智能合约
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/02/07/Hyperledger Fabric分布式账本介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hyperledger Fabric分布式账本介绍</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步-创建业务网络的结构"><span class="toc-number">1.</span> <span class="toc-text">第一步-创建业务网络的结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步-定义一个商业网络"><span class="toc-number">2.</span> <span class="toc-text">第二步-定义一个商业网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#建模资产，参与者和交易"><span class="toc-number">2.1.</span> <span class="toc-text">建模资产，参与者和交易</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加JavaScript事务逻辑"><span class="toc-number">2.2.</span> <span class="toc-text">添加JavaScript事务逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加访问控制"><span class="toc-number">2.3.</span> <span class="toc-text">添加访问控制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三步-生成业务网络归档"><span class="toc-number">3.</span> <span class="toc-text">第三步-生成业务网络归档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四步-部署业务网络"><span class="toc-number">4.</span> <span class="toc-text">第四步-部署业务网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#检索正确的凭证"><span class="toc-number">4.1.</span> <span class="toc-text">检索正确的凭证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署业务网络"><span class="toc-number">4.2.</span> <span class="toc-text">部署业务网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建REST服务器"><span class="toc-number">4.3.</span> <span class="toc-text">创建REST服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成一个应用程序"><span class="toc-number">4.4.</span> <span class="toc-text">生成一个应用程序</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/" data-title="基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程" data-url="https://ittomato.github.io/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"null"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/" title="上一篇: Hyperledger Composer教程-创建、开发、发布智能合约">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/02/07/Hyperledger Fabric分布式账本介绍/" title="下一篇: Hyperledger Fabric分布式账本介绍">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/20181217/">子墨与杰</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/04/hyperledger composer的cryptogen配置文件详解/">Hyperledger Composer的cryptogen、configtxgen等配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/01/Hyperledger Composer的建模语言详解/">Hyperledger Composer的建模语言详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/">Hyperledger Composer教程-创建、开发、发布智能合约</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/">基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/07/Hyperledger Fabric分布式账本介绍/">Hyperledger Fabric分布式账本介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/06/区块链微讲堂系列之hyperledger Fabric/">区块链微讲堂系列之hyperledger fabric</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/04/Hyperledger Fabri教程-安装blockchain explorer4/">Hyperledger Composer教程4-安装blockchain explorer</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/03/Hyperledger Fabric教程-安装开发环境3/">Hyperledger Composer教程3-安装开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/02/Hyperledger Fabric教程-安装前提条件2/">Hyperledger Composer教程2-安装前提条件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/01/Hyperledger Fabric教程-Hyperledger Fabric 的简介1/">Hyperledger Fabric教程1-Hyperledger Fabric 的简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/">Nginx反向代理解决产品不支持JDK1.6版本的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/SSL和TLS的技术原理浅谈/">SSL和TLS的技术原理浅谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/04/安全HTTPS/">安全HTTPS相关杂谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/03/TLS的握手流程/">TLS的握手流程-密钥协商与身份认证过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/20/18/">使用nginx反向代码配置网站教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/17/">使用impress.js打造酷炫PPT演示文稿教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/restify文档/">restify打造强悍的REST类的Web Service系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/16/">异步编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/24/13/">监控Linux用户登录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/11/">python爬虫 高清无码图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/10/">wall crontab 定时服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/9/">MyEclipse中右键项目Build Path菜单无子菜单的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/8/">ibatis 自定义sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/7/">代码关闭dblink产生的session会话连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/6/">多主机数据库表数据同步</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/5/">自动化adb push新大陆N900测试</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy;2014 - 2019 Panjie.Yan
+            </div>
+            <!--
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme 
+            </div>
+            -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >读者到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 109;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+<script>
+  (function(){
+  var bp = document.createElement('script');
+      bp.src = '//push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
   </div>
 </body>
 </html>

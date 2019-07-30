@@ -1,15 +1,727 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='/img/wx_pic.jpg' />
+  </div>
+  <meta charset="utf-8">
+  
+  <title>自动化adb push新大陆N900测试 | 程序小兵</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文目标：当修改代码时，会自动无间隙完美push进N900的机器，方便快捷，妈妈再也不用担心我加班了。  基础知识新入手的新大陆 N900 的开发工程机，安装了银商总公司提供的UMSDesktop_trunk_032502.apk的主控程序后，进去都是空白的。这时需要把业务代码push进去。用到的工具是Android的adb，有安装开发环境的朋友，可以在sdk路径下(E:\java\adt-bu">
+<meta name="keywords" content="python,js,随笔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动化adb push新大陆N900测试">
+<meta property="og:url" content="https://ittomato.github.io/2016/05/12/5/index.html">
+<meta property="og:site_name" content="程序小兵">
+<meta property="og:description" content="本文目标：当修改代码时，会自动无间隙完美push进N900的机器，方便快捷，妈妈再也不用担心我加班了。  基础知识新入手的新大陆 N900 的开发工程机，安装了银商总公司提供的UMSDesktop_trunk_032502.apk的主控程序后，进去都是空白的。这时需要把业务代码push进去。用到的工具是Android的adb，有安装开发环境的朋友，可以在sdk路径下(E:\java\adt-bu">
+<meta property="og:updated_time" content="2016-06-08T01:45:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自动化adb push新大陆N900测试">
+<meta name="twitter:description" content="本文目标：当修改代码时，会自动无间隙完美push进N900的机器，方便快捷，妈妈再也不用担心我加班了。  基础知识新入手的新大陆 N900 的开发工程机，安装了银商总公司提供的UMSDesktop_trunk_032502.apk的主控程序后，进去都是空白的。这时需要把业务代码push进去。用到的工具是Android的adb，有安装开发环境的朋友，可以在sdk路径下(E:\java\adt-bu">
+  
+    <link rel="alternative" href="/atom.xml" title="程序小兵" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/img/head.jpg">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: true
+      }
+  </script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Panjie.Yan</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">专注区块链研究</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives">所有文章</a></li>
+                        
+                            <li><a href="/about">捐助</a></li>
+                        
+                            <li><a href="/tags">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                            
+                                <a class="fl facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                            
+                                <a class="fl google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/hyperledger/" style="font-size: 20px;">hyperledger</a> <a href="/tags/ide/" style="font-size: 10px;">ide</a> <a href="/tags/it/" style="font-size: 20px;">it</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/oracle/" style="font-size: 16.67px;">oracle</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/thinking/" style="font-size: 13.33px;">thinking</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/心念/" style="font-size: 10px;">心念</a> <a href="/tags/程序小兵/" style="font-size: 16.67px;">程序小兵</a> <a href="/tags/诗歌/" style="font-size: 10px;">诗歌</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://ittomato.lofter.com/">程序小兵</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">自由职业者、极客、程序小兵</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">专注区块链研究</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives">所有文章</a></li>
+                
+                    <li><a href="/about">捐助</a></li>
+                
+                    <li><a href="/tags">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                    
+                        <a class="facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                    
+                        <a class="google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                    
+                </div>
+            </nav>
+        </header>                
     </div>
-    <%- partial('_partial/after-footer') %>
+</nav>
+      <div class="body-wrap"><article id="post-5" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/12/5/" class="article-date">
+      <time datetime="2016-05-12T01:06:06.000Z" itemprop="datePublished">2016-05-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      自动化adb push新大陆N900测试
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>本文目标：当修改代码时，会自动无间隙完美push进N900的机器，方便快捷，妈妈再也不用担心我加班了。</p>
+</blockquote>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>新入手的新大陆 N900 的开发工程机，安装了银商总公司提供的<code>UMSDesktop_trunk_032502.apk</code>的主控程序后，进去都是空白的。这时需要把业务代码<code>push</code>进去。用到的工具是<code>Android</code>的<code>adb</code>，有安装开发环境的朋友，可以在<code>sdk</code>路径下(<code>E:\java\adt-bundle-windows-x86_64-20130522\sdk\platform-tools</code>)找到<code>adb.exe</code>的程序，然后添加到<strong>系统环境变量</strong>就可以在<code>dos</code>命令行窗口使用了，添加后，可以打开<code>dos</code>，输入 <code>adb</code>，查看是否OK。</p>
+<p>熟悉几个简单的命令：</p>
+<h3 id="H5远程真机调试："><a href="#H5远程真机调试：" class="headerlink" title="H5远程真机调试："></a>H5远程真机调试：</h3><ol>
+<li>chrome上面远程调试地址：chrome://inspect/#devices</li>
+<li>选中inspect后点设置，关闭缓存</li>
+</ol>
+<a id="more"></a>
+<h3 id="常用ABD命令："><a href="#常用ABD命令：" class="headerlink" title="常用ABD命令："></a>常用ABD命令：</h3><pre><code class="bash">adb install -r &lt;apk file address&gt; ##安装APK 
+adb shell ##进入Android Linux内核
+adb logcat -v time &gt; ums.log ##无IDE情况下抓日志 
+adb push  &lt;文件夹地址&gt; &lt;终端内部目标文件夹地址&gt; ##从外部压入文件至终端
+adb pull  &lt;终端内部目标文件夹地址&gt; &lt;文件夹地址&gt; ##从终端提取文件  
+adb devices ##获取已链接的Android设备列表 
+</code></pre>
+<h3 id="常用linux命令："><a href="#常用linux命令：" class="headerlink" title="常用linux命令："></a>常用linux命令：</h3><pre><code class="bash">cd xxx ## 切换
+ls ##查看文件夹下所有文件
+rm -rf XXXX ## 删除某个文件夹
+mv XXX  xxx ##删除某个文件夹
+</code></pre>
+<h2 id="为了测试-N900"><a href="#为了测试-N900" class="headerlink" title="为了测试-N900"></a>为了测试-N900</h2><p>N900的机子的业务内容是<code>push</code>到Android内核中的<code>/Share/UmsTssMaster/resource</code>，主控加载8位长度的序列文件夹，如<code>00000001</code>，<code>00000002</code>……每个文件夹对应一个大业务类型，如果新增新的业务，则在此目录下新建一个递增序号的目录即可<code>mkdir 00000003</code>。如下：</p>
+<pre><code class="bash">adb shell ## 进入Android内：
+cd /Share/UmsTssMaster/resource ##切换至resource目录
+mkdir 00000003 ## 新建 00000003，若存在，则递增
+</code></pre>
+<p>退出<code>adb shell</code>，切换为<code>windows dos</code>命令行窗口，将你的代码push进去<br><code>adb push d:\bankcard /Share/UmsTssMaster/resource/00000003/</code></p>
+<h2 id="为了偷懒（为了效率）"><a href="#为了偷懒（为了效率）" class="headerlink" title="为了偷懒（为了效率）"></a>为了偷懒（为了效率）</h2><p>每次修改js代码，要烧进N900的机器时，总是在dos敲几条命令:</p>
+<p>虽然，手动敲下，也很方便，但是在频繁修改 <code>adb push</code> 就显得有些劳累，有无自动管理办法，当我每次modify时，一保存，就帮我把最新的代码push进机子中，我立马就可以测试。原本找些windows的bat处理命令来整，N久没玩过bat了，生疏的到完全不会。于是乎从Linux入手，后来Linux上也有些难搞，毕竟我的机子是Windows PC。大脑的深处告诉我，<code>Python</code>很适合造这种类似的工具。于是根据自己的需求：</p>
+<blockquote>
+<p>每当我指定的目录下的文件发送改变时（增、删、改），就调用我指定的命令（原初只是想执行个adb push把代码push进去Android内核，现在觉得，好像可以推广到其他，太被自己的智商佩服了，略）</p>
+</blockquote>
+<hr>
+<h4 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h4><p>确保自己的电脑正常USB连接到N900的Android内核，可以尝试使用 <code>adb shell</code> 命令进入内核与<code>adb devices</code>命令查看设备连接是否Ok. </p>
+<hr>
+<h4 id="其次"><a href="#其次" class="headerlink" title="其次"></a>其次</h4><p>确保自己的电脑有了<code>Python</code>的开发环境（其实就安装下Python，我想作为开发者，应该有的）</p>
+<hr>
+<h4 id="三次"><a href="#三次" class="headerlink" title="三次"></a>三次</h4><p>将下面的<code>Python</code>代码存放在某个文件目录下，保存为<code>push.py</code>，后缀名为<code>.py</code>，本人放于<code>E:\easyLink\h5_U</code></p>
+<pre><code class="python">## author: Panjie.Yan
+## blog  : ittomato.github.io
+## time  : 2016-5-12
+## brief : 自动监控文件变化并执行命令
+import os
+import win32file
+import win32con
+ACTIONS = {
+  1 : &quot;Created&quot;,
+  2 : &quot;Deleted&quot;,
+  3 : &quot;Updated&quot;,
+  4 : &quot;Renamed from something&quot;,
+  5 : &quot;Renamed to something&quot;
+}
+# Thanks to Claudio Grondi for the correct set of numbers
+FILE_LIST_DIRECTORY = 0x0001
+path_to_watch = &quot;.&quot;
+hDir = win32file.CreateFile (
+  path_to_watch,
+  FILE_LIST_DIRECTORY,
+  win32con.FILE_SHARE_READ | win32con.FILE_SHARE_WRITE,
+  None,
+  win32con.OPEN_EXISTING,
+  win32con.FILE_FLAG_BACKUP_SEMANTICS,
+  None
+)
+while 1:
+  # 循环
+  results = win32file.ReadDirectoryChangesW (
+    hDir,
+    1024,
+    True,
+    win32con.FILE_NOTIFY_CHANGE_FILE_NAME |
+     win32con.FILE_NOTIFY_CHANGE_DIR_NAME |
+     win32con.FILE_NOTIFY_CHANGE_ATTRIBUTES |
+     win32con.FILE_NOTIFY_CHANGE_SIZE |
+     win32con.FILE_NOTIFY_CHANGE_LAST_WRITE |
+     win32con.FILE_NOTIFY_CHANGE_SECURITY,
+    None,
+    None
+  )
+  for action, file in results:
+    full_filename = os.path.join (path_to_watch, file)
+    print full_filename, ACTIONS.get (action, &quot;Unknown&quot;)
+    os.system(&#39;adb push E:\easyLink\h5_U\slt-term /Share/UmsTssMaster/resource/00000003/&#39;)
+    print &#39;-------------adb push ok-------------&#39;
+</code></pre>
+<hr>
+<h4 id="Last-but-one"><a href="#Last-but-one" class="headerlink" title="Last but one"></a>Last but one</h4><p>修改</p>
+<pre><code class="python">os.system(&#39;adb push E:\easyLink\h5_U\slt-term /Share/UmsTssMaster/resource/00000003/&#39;)
+</code></pre>
+<p>里的代码，将<code>E:\easyLink\h5_U\slt-term</code>换为你本地的源码路径, <code>00000003</code>也换为你相应的子模块文件名。修改目标文件，可以更细化的<code>push</code>目录，这样每次<code>push</code>速度就更快了，毕竟很多基础文件是没做修改的，就无需频繁<code>push</code>了。</p>
+<hr>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>打开dos，<code>cd</code>切换至<code>E:\easyLink\h5_U</code>，执行命令<code>python push.py</code></p>
+<hr>
+<h4 id="曙光"><a href="#曙光" class="headerlink" title="曙光"></a>曙光</h4><p>执行结束后，看到</p>
+<pre><code>-------------adb push ok-------------
+</code></pre><p>则表明已经Ok了，接下来就用<code>chrome://inspect/#devices</code>。尽情的造bug吧。</p>
+<hr>
+<h4 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h4><p>第一次把<code>biz-xxx</code>的业务push进去后，主控室页面是没有显示的，此时需要退出主控（有个隐藏的技能，我想大家都知道，这里就不方便贴出来了），回到Android原生界面==&gt;设置==&gt;应用==&gt;智能桌面Upos，进入Upos，清除数据、清除缓存后重新进入智能桌面。主控重新加载就会解析出刚<code>push</code>进去的新的业务了。</p>
+<hr>
+<p>（完）</p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+  <!-- /上述代码 -->
+  
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      \(^o^)/
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+      
+    
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+    
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+        
+       <br>
+
+    <a href="/img/weixin_pay_qr.png" title="用微信扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/weixin_pay_qr.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+        
+          
+
+    <a href="/img/ali_pay_qr.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/ali_pay_qr.png" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+  
+
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/05/12/5/">自动化adb push新大陆N900测试</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Panjie.Yan 的个人博客">Panjie.Yan</a></p>
+        <p><span>发布时间:</span>2016年05月12日 - 09时06分</p>
+        <p><span>最后更新:</span>2016年06月08日 - 09时45分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/05/12/5/" title="自动化adb push新大陆N900测试">https://ittomato.github.io/2016/05/12/5/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ittomato.github.io/2016/05/12/5/　　作者: Panjie.Yan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2016/05/19/6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          多主机数据库表数据同步
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础知识"><span class="toc-number">1.</span> <span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#H5远程真机调试："><span class="toc-number">1.1.</span> <span class="toc-text">H5远程真机调试：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用ABD命令："><span class="toc-number">1.2.</span> <span class="toc-text">常用ABD命令：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用linux命令："><span class="toc-number">1.3.</span> <span class="toc-text">常用linux命令：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为了测试-N900"><span class="toc-number">2.</span> <span class="toc-text">为了测试-N900</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为了偷懒（为了效率）"><span class="toc-number">3.</span> <span class="toc-text">为了偷懒（为了效率）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#首先"><span class="toc-number">3.0.1.</span> <span class="toc-text">首先</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其次"><span class="toc-number">3.0.2.</span> <span class="toc-text">其次</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三次"><span class="toc-number">3.0.3.</span> <span class="toc-text">三次</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Last-but-one"><span class="toc-number">3.0.4.</span> <span class="toc-text">Last but one</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最后"><span class="toc-number">3.0.5.</span> <span class="toc-text">最后</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#曙光"><span class="toc-number">3.0.6.</span> <span class="toc-text">曙光</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tips"><span class="toc-number">3.0.7.</span> <span class="toc-text">Tips</span></a></li></ol></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/05/12/5/" data-title="自动化adb push新大陆N900测试" data-url="https://ittomato.github.io/2016/05/12/5/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"null"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/05/19/6/" title="上一篇: 多主机数据库表数据同步">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/20181217/">子墨与杰</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/04/hyperledger composer的cryptogen配置文件详解/">Hyperledger Composer的cryptogen、configtxgen等配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/01/Hyperledger Composer的建模语言详解/">Hyperledger Composer的建模语言详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/">Hyperledger Composer教程-创建、开发、发布智能合约</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/">基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/07/Hyperledger Fabric分布式账本介绍/">Hyperledger Fabric分布式账本介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/06/区块链微讲堂系列之hyperledger Fabric/">区块链微讲堂系列之hyperledger fabric</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/04/Hyperledger Fabri教程-安装blockchain explorer4/">Hyperledger Composer教程4-安装blockchain explorer</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/03/Hyperledger Fabric教程-安装开发环境3/">Hyperledger Composer教程3-安装开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/02/Hyperledger Fabric教程-安装前提条件2/">Hyperledger Composer教程2-安装前提条件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/01/Hyperledger Fabric教程-Hyperledger Fabric 的简介1/">Hyperledger Fabric教程1-Hyperledger Fabric 的简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/">Nginx反向代理解决产品不支持JDK1.6版本的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/SSL和TLS的技术原理浅谈/">SSL和TLS的技术原理浅谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/04/安全HTTPS/">安全HTTPS相关杂谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/03/TLS的握手流程/">TLS的握手流程-密钥协商与身份认证过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/20/18/">使用nginx反向代码配置网站教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/17/">使用impress.js打造酷炫PPT演示文稿教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/restify文档/">restify打造强悍的REST类的Web Service系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/16/">异步编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/24/13/">监控Linux用户登录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/11/">python爬虫 高清无码图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/10/">wall crontab 定时服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/9/">MyEclipse中右键项目Build Path菜单无子菜单的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/8/">ibatis 自定义sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/7/">代码关闭dblink产生的session会话连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/6/">多主机数据库表数据同步</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/5/">自动化adb push新大陆N900测试</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy;2014 - 2019 Panjie.Yan
+            </div>
+            <!--
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme 
+            </div>
+            -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >读者到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 109;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+<script>
+  (function(){
+  var bp = document.createElement('script');
+      bp.src = '//push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
   </div>
 </body>
 </html>

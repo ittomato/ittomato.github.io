@@ -1,15 +1,891 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='/img/wx_pic.jpg' />
+  </div>
+  <meta charset="utf-8">
+  
+  <title>Hyperledger Composer教程-创建、开发、发布智能合约 | 程序小兵</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前提条件本文的Hyperledger Fabric版本为v1.1， Hyperledger Composer的版本为v0.19.5，而且必须已经完成『Hyperledger Fabric教程3-安装开发环境』的安装。 综述本教程基于Hyperledger Fabric + Composer开发『智能合约』程序并发布到链上，为了快速应用，本机运行于默认的例子，即单个peer、单个orderer的机制">
+<meta name="keywords" content="hyperledger">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hyperledger Composer教程-创建、开发、发布智能合约">
+<meta property="og:url" content="https://ittomato.github.io/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/index.html">
+<meta property="og:site_name" content="程序小兵">
+<meta property="og:description" content="前提条件本文的Hyperledger Fabric版本为v1.1， Hyperledger Composer的版本为v0.19.5，而且必须已经完成『Hyperledger Fabric教程3-安装开发环境』的安装。 综述本教程基于Hyperledger Fabric + Composer开发『智能合约』程序并发布到链上，为了快速应用，本机运行于默认的例子，即单个peer、单个orderer的机制">
+<meta property="og:image" content="https://ittomato.github.io/img/qq_qr.png">
+<meta property="og:updated_time" content="2018-06-04T15:22:35.856Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hyperledger Composer教程-创建、开发、发布智能合约">
+<meta name="twitter:description" content="前提条件本文的Hyperledger Fabric版本为v1.1， Hyperledger Composer的版本为v0.19.5，而且必须已经完成『Hyperledger Fabric教程3-安装开发环境』的安装。 综述本教程基于Hyperledger Fabric + Composer开发『智能合约』程序并发布到链上，为了快速应用，本机运行于默认的例子，即单个peer、单个orderer的机制">
+<meta name="twitter:image" content="https://ittomato.github.io/img/qq_qr.png">
+  
+    <link rel="alternative" href="/atom.xml" title="程序小兵" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/img/head.jpg">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: true
+      }
+  </script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Panjie.Yan</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">专注区块链研究</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives">所有文章</a></li>
+                        
+                            <li><a href="/about">捐助</a></li>
+                        
+                            <li><a href="/tags">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                            
+                                <a class="fl facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                            
+                                <a class="fl google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/hyperledger/" style="font-size: 20px;">hyperledger</a> <a href="/tags/ide/" style="font-size: 10px;">ide</a> <a href="/tags/it/" style="font-size: 20px;">it</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/oracle/" style="font-size: 16.67px;">oracle</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/thinking/" style="font-size: 13.33px;">thinking</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/心念/" style="font-size: 10px;">心念</a> <a href="/tags/程序小兵/" style="font-size: 16.67px;">程序小兵</a> <a href="/tags/诗歌/" style="font-size: 10px;">诗歌</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://ittomato.lofter.com/">程序小兵</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">自由职业者、极客、程序小兵</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">专注区块链研究</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives">所有文章</a></li>
+                
+                    <li><a href="/about">捐助</a></li>
+                
+                    <li><a href="/tags">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                    
+                        <a class="facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                    
+                        <a class="google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                    
+                </div>
+            </nav>
+        </header>                
     </div>
-    <%- partial('_partial/after-footer') %>
+</nav>
+      <div class="body-wrap"><article id="post-Hyperledger Fabric教程-创建、开发、发布智能合约" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/" class="article-date">
+      <time datetime="2018-05-28T13:13:14.000Z" itemprop="datePublished">2018-05-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hyperledger Composer教程-创建、开发、发布智能合约
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hyperledger/">hyperledger</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p>本文的<code>Hyperledger Fabric</code>版本为<code>v1.1</code>， <code>Hyperledger Composer</code>的版本为<code>v0.19.5</code>，而且必须已经完成『Hyperledger Fabric教程3-安装开发环境』的安装。</p>
+<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>本教程基于<code>Hyperledger Fabric</code> + <code>Composer</code>开发『智能合约』程序并发布到链上，为了快速应用，本机运行于默认的例子，即单个peer、单个orderer的机制，以下是进程：</p>
+<pre><code class="java">CONTAINER ID        NAME                     CPU %               MEM USAGE / LIMIT     MEM %               NET
+1ed7283b08fa        peer0.org1.example.com   1.59%               28.93MiB / 1.925GiB   1.47%               40.1kB /
+f6d811ad71f0        ca.org1.example.com      0.00%               5.746MiB / 1.925GiB   0.29%               7.62kB /
+073d0d94c129        couchdb                  0.29%               92.36MiB / 1.925GiB   4.69%               24.5kB /
+269b305cf916        orderer.example.com      0.01%               4.848MiB / 1.925GiB   0.25%               20.8kB /
+</code></pre>
+<p>为了方便理解，本教程分为6个步骤完成整个智能合约的开发，分别如下：</p>
+<ol>
+<li>Step 1-创建智能合约框架</li>
+<li>Step 2-编写智能合约代码</li>
+<li>Step 3-生成智能合约归档</li>
+<li>Step 4-发布智能合约程序</li>
+<li>Step 5-生成REST服务端</li>
+<li>Step 6-生成Angular客户端</li>
+</ol>
+<a id="more"></a>
+<h2 id="Step-1-创建智能合约框架"><a href="#Step-1-创建智能合约框架" class="headerlink" title="Step 1-创建智能合约框架"></a>Step 1-创建智能合约框架</h2><p>该业务网络关键概念为BND，它为区块链解决方案定义数据模型、事务逻辑和访问控制规则等，本文利用利用composer创建的智能合约，因此智能合约的框架采用『Yeoman』生成器生成，该命令行工具再前提条件里已经默认安装了，如果你电脑没有，请自行安装即可，以下是执行步骤：</p>
+<ol>
+<li>使用『Yeoman』创建一个骨架业务网络。此命令将需要业务网络名称，说明，作者姓名，作者电子邮件地址，许可证选择和命名空间。<pre><code class="java">yo hyperledger-composer:businessnetwork
+</code></pre>
+</li>
+<li>输入<strong>tutorial-network</strong> 网络名称以及所需的描述信息，作者姓名和作者电子邮件。</li>
+<li>选择<strong>Apache-2.0</strong> 作为许可证。</li>
+<li>选择<strong>org.example.mynetwork</strong> 作为命名空间。</li>
+<li>选择<strong>No</strong> 当被问及是否生成一个空网络时。</li>
+</ol>
+<p>最终会在该命令下创建文件夹<strong>tutorial-network</strong>，文件的结构如下：</p>
+<pre><code>.
+|-- README.md
+|-- features
+|   |-- sample.feature
+|   `-- support
+|       `-- index.js
+|-- lib
+|   `-- logic.js
+|-- models
+|   `-- org.example.mynetwork.cto
+|-- package.json
+|-- permissions.acl
+`-- test
+    `-- logic.js
+
+5 directories, 8 files
+
+</code></pre><blockquote>
+<p>智能合约的框架已经建立，接下来就要针对具体的业务，定义具体的事务处理逻辑、数据模型、访问控制规则等。</p>
+</blockquote>
+<h2 id="Step-2-编写智能合约代码"><a href="#Step-2-编写智能合约代码" class="headerlink" title="Step 2-编写智能合约代码"></a>Step 2-编写智能合约代码</h2><p>智能合约由资产、参与者、交易、访问控制规则以及可选的事件、查询组成。前面通过命令行『Yeoman』生成的有以下文件：</p>
+<ul>
+<li>model(<strong>.cto</strong>)文件，包含了业务网络中所有资产、参加者和事务类定义</li>
+<li>permissions(<strong>.acl</strong>)文件，基本访问控制规则的访问控制</li>
+<li>logic(<strong>.js</strong>)文件，包含事务处理器功能的脚本，为智能合约的逻辑处理</li>
+<li>package配置文件，包含该智能合约的版本号等定义，后续更新业务网络需要修改本文件的版本号</li>
+</ul>
+<blockquote>
+<p>因此主要从添加模型文件、业务逻辑、访问控制三个方面编写智能合约代码，实现业务逻辑。</p>
+</blockquote>
+<p>在编写智能合约时，本人采用的是<code>Atom</code>文本编辑器，配合安装atom的hyperledger的插件，实现智能合约代码高亮、代码提示等功能，建议读者在本地编写完毕，再上传到服务端，或者通过<code>vim</code>在服务端直接编辑。同时，添加的模型文件、业务逻辑处理、访问控制均采用hyperledger composer的建模语言编写，具体建模语言的语法风格，后续会单独有博文介绍。</p>
+<h3 id="添加模型文件"><a href="#添加模型文件" class="headerlink" title="添加模型文件"></a>添加模型文件</h3><p>模型文件包含每类资产，交易，参与者和事件的定义。它隐含地扩展了建模语言文档中描述的Hyperledger Composer系统模型。打开<code>org.example.mynetwork.cto</code>文件，替换为以下内容：</p>
+<pre><code class="java">/**
+ * My commodity trading network
+ */
+namespace org.example.mynetwork
+asset Commodity identified by tradingSymbol {
+    o String tradingSymbol
+    o String description
+    o String mainExchange
+    o Double quantity
+    --&gt; Trader owner
+}
+participant Trader identified by tradeId {
+    o String tradeId
+    o String firstName
+    o String lastName
+}
+transaction Trade {
+    --&gt; Commodity commodity
+    --&gt; Trader newOwner
+}
+</code></pre>
+<h3 id="添加业务逻辑"><a href="#添加业务逻辑" class="headerlink" title="添加业务逻辑"></a>添加业务逻辑</h3><p>在模型文件中，Trade定义了事务，指定与资产和参与者的关系。事务处理函数文件包含执行模型文件中定义的事务的JavaScript逻辑。打开<code>login.js</code>脚本文件，替换以下内容：</p>
+<pre><code class="java">/**
+ * Track the trade of a commodity from one trader to another
+ * @param {org.example.mynetwork.Trade} trade - the trade to be processed
+ * @transaction
+ */
+async function tradeCommodity(trade) {
+    trade.commodity.owner = trade.newOwner;
+    let assetRegistry = await getAssetRegistry(&#39;org.example.mynetwork.Commodity&#39;);
+    await assetRegistry.update(trade.commodity);
+}
+</code></pre>
+<h3 id="添加访问控制"><a href="#添加访问控制" class="headerlink" title="添加访问控制"></a>添加访问控制</h3><p>访问控制规则控制业务模型的访问规则，通过此规则可以控制通道访问资源的策略，打开<code>permissions.acl</code>文件，替换以下内容：</p>
+<pre><code class="java">/**
+ * Access control rules for tutorial-network
+ */
+rule Default {
+    description: &quot;Allow all participants access to all resources&quot;
+    participant: &quot;ANY&quot;
+    operation: ALL
+    resource: &quot;org.example.mynetwork.*&quot;
+    action: ALLOW
+}
+
+rule SystemACL {
+  description:  &quot;System ACL to permit all access&quot;
+  participant: &quot;ANY&quot;
+  operation: ALL
+  resource: &quot;org.hyperledger.composer.system.**&quot;
+  action: ALLOW
+}
+
+</code></pre>
+<h2 id="Step-3-生成智能合约归档"><a href="#Step-3-生成智能合约归档" class="headerlink" title="Step 3-生成智能合约归档"></a>Step 3-生成智能合约归档</h2><p>通过『Yeoman』生成智能合约的框架，并编写了具体的数据模型、逻辑事务处理，现在需要将已经完成的智能合约进行打包操作，以便在下一步进行发布到区块链网络节点中。</p>
+<ol>
+<li>使用命令行，导航到<strong>tutorial-network</strong>根目录</li>
+<li>从<strong>tutorial-network</strong>目录中运行以下命令：<pre><code>composer archive create -t dir -n .
+</code></pre>该命令会取文件下的<strong>package.json</strong>的的版本号<code>&quot;version&quot;: &quot;0.0.1&quot;</code>,因此，该命令运行后，在该tutorial-network目录中创建了一个调用的智能合约存档文件,文件以智能合约名+@+版本号+bnd组合，如<a href="mailto:**tutorial-network@0.0.1.bna" target="_blank" rel="external">**tutorial-network@0.0.1.bna</a>**</li>
+</ol>
+<p>有了该<code>bna</code>的归档文件，就可以发布到区块链的节点中了，很快就可以实现给力的区块链应用了。</p>
+<h2 id="Step-4-发布智能合约程序"><a href="#Step-4-发布智能合约程序" class="headerlink" title="Step 4-发布智能合约程序"></a>Step 4-发布智能合约程序</h2><p>本机已经部署启动了hyperledger的基础区块链网络，<code>Orderer+Peer+Couchdb+Ca</code>,通过命令<code>docker stats</code>显示如下：</p>
+<pre><code class="java">CONTAINER ID        NAME                     CPU %               MEM USAGE / LIMIT     MEM %               NET
+1ed7283b08fa        peer0.org1.example.com   1.59%               28.93MiB / 1.925GiB   1.47%               40.1kB /
+f6d811ad71f0        ca.org1.example.com      0.00%               5.746MiB / 1.925GiB   0.29%               7.62kB /
+073d0d94c129        couchdb                  0.29%               92.36MiB / 1.925GiB   4.69%               24.5kB /
+269b305cf916        orderer.example.com      0.01%               4.848MiB / 1.925GiB   0.25%               20.8kB /
+</code></pre>
+<p>初始容器为4个，若智能合约发布成功，会有新的容器出现，本发布在基于你区块链网络能正常运行，并已经创建<code>PeerAdmin</code>管理员，并且必须创建新参与者，身份和关联卡才能成为『网络管理员』。最后，通过命令导入『网络管理员』业务网卡才能使用。导入成功与否，可以通过<code>ping</code>命令检查它是否正在响应，具体步骤如下：</p>
+<ol>
+<li>安装智能合约</li>
+</ol>
+<p>导航切换目录到『tutorial-network』，运行一下命令：</p>
+<pre><code>composer network install --card PeerAdmin@hlfv1 --archiveFile tutorial-network@0.0.1.bna
+</code></pre><p>输出结果如下：</p>
+<pre><code>✔ Installing business network. This may take a minute...
+Successfully installed business network tutorial-network, version 0.0.1
+
+Command succeeded
+
+</code></pre><p>该<code>composer network install</code>命令需要一个<code>PeerAdmin</code>业务网卡（在这种情况下，预先创建并导入一个网卡）以及.bna定义业务网络的文件路径。本文的<code>PeerAdmin</code>业务网卡通过composer工程提供的<code>createPeerAdminCard.sh</code>脚本执行生产并导入，读者也可以自行通过<code>composer card create</code>命令创建具体的连接的管理员业务网卡，创建命令如下：</p>
+<pre><code>card create -p DevServer_connection.json -u PeerAdmin -c &quot;${CERT}&quot; -k &quot;${PRIVATE_KEY}&quot; -r PeerAdmin -r ChannelAdmin --file $CARDOUTPUT
+</code></pre><p>导入命令如下：</p>
+<pre><code>card import --file /tmp/PeerAdmin@hlfv1.card
+</code></pre><p>最后通过，<code>card list</code>查看是否已经导入成功。</p>
+<blockquote>
+<p>该『<a href="mailto:PeerAdmin@hlfv1.card" target="_blank" rel="external">PeerAdmin@hlfv1.card</a>』包含了接入节点所需要的私钥和公钥证书、登录用户名密码、连接<code>peer</code>节点的网络地址等等，为后续安装『智能合约』提供准入条件。</p>
+</blockquote>
+<ol start="2">
+<li>启动智能合约</li>
+</ol>
+<p>要启动智能合约，运行以下命令：</p>
+<pre><code>composer network start --networkName tutorial-network --networkVersion 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+</code></pre><p>输出结果如下：</p>
+<pre><code>Starting business network tutorial-network at version 0.0.1
+
+Processing these Network Admins:
+    userName: admin
+
+✔ Starting business network definition. This may take a minute...
+Successfully created business network card:
+    Filename: networkadmin.card
+
+Command succeeded
+
+</code></pre><p>若有多个peer节点，需要等待一定时间才能启动完毕。该<code>composer network start</code>命令需要网络管理员卡，即，前面安装的<code>PeerAdmin@hlfv1</code>，以及智能合约名称和版本、要创建的业务网卡文件的名称『networkadmin.card』，以准备将其导入为业务网卡。</p>
+<ol start="3">
+<li>导入智能合约的业务网卡</li>
+</ol>
+<p>在上面步骤中，已经通过命令生成了『networkadmin.card』-用于后续的网络测试的访问控制文件，通过将此文件导入到区块链网络中，即可进行该智能合约的相关逻辑代码的测试。导入命令如下：</p>
+<pre><code>composer card import --file networkadmin.card
+</code></pre><p>输出结果如下：</p>
+<pre><code>Successfully imported business network card
+    Card file: networkadmin.card
+    Card name: admin@tutorial-network
+
+Command succeeded
+</code></pre><ol start="4">
+<li>检测智能合约是否成功</li>
+</ol>
+<p>导入了具体的业务网卡『networkadmin.card』，原则上通过<code>composer network</code>的<code>ping</code>命令可以查看到是否已经完成了发布。</p>
+<pre><code>composer network ping --card admin@tutorial-network
+</code></pre><p>其中<code>admin@tutorial-network</code>为『networkAdmin.card』中的以管理员账号+@+智能合约名称为组合的合约代号，通过<code>ping</code>命令，可以查看该合约是否已经安装，具体输出如下：</p>
+<pre><code>The connection to the network was successfully tested: tutorial-network
+    Business network version: 0.0.1
+    Composer runtime version: 0.19.5
+    participant: org.hyperledger.composer.system.NetworkAdmin#admin
+    identity: org.hyperledger.composer.system.Identity#ffc4c2027f466a1c63c2912e5a724fa3d4d9f0d5ab4dcc02207a445ff80e2bd4
+
+Command succeeded
+
+</code></pre><blockquote>
+<p>至此，智能合约已经从开发并安装到节点中了，恭喜！！！</p>
+</blockquote>
+<p>此时，docker的进程多了一个新的智能合约的容器，如下：</p>
+<pre><code>CONTAINER ID        NAME                                             CPU %               MEM USAGE / LIMIT     MEM %               NET I/O             
+1ed7283b08fa        peer0.org1.example.com                           1.28%               42.54MiB / 1.925GiB   2.16%               426kB / 650kB       
+f6d811ad71f0        ca.org1.example.com                              0.00%               5.965MiB / 1.925GiB   0.30%               10.5kB / 2.88kB     
+073d0d94c129        couchdb                                          0.19%               93.07MiB / 1.925GiB   4.72%               190kB / 2.6MB       
+269b305cf916        orderer.example.com                              0.00%               5.715MiB / 1.925GiB   0.29%               86.6kB / 75.4kB     
+2a43ed6aceec        dev-peer0.org1.example.com-bless-network-0.0.1   0.00%               66.18MiB / 1.925GiB   3.36%               102kB / 150kB       
+</code></pre><p>容器名<code>dev-peer0.org1.example.com-bless-network-0.0.1</code>，则是新开发并发布的智能合约，合约以容器的形式存在并运行在区块链网络节点中，后续可以通过<code>composer playground</code>等web操作页面、rest服务器进行测试智能合约的可用性。至此，我们的智能合约已经发布完毕，下面将来验证我们的部署的情况，见证奇迹的时刻到了。</p>
+<h2 id="Step-5-生成REST服务器"><a href="#Step-5-生成REST服务器" class="headerlink" title="Step 5-生成REST服务器"></a>Step 5-生成REST服务器</h2><p>hyperledger composer的可以基于业务网络生成定制的REST API接口。为了开发web应用程序，REST API提供了了与开发语言无关的抽象层。</p>
+<ol>
+<li>要创建RESP API，导航到tutorial-network目录并执行以下命令：</li>
+</ol>
+<pre><code>composer-rest-server
+</code></pre><ol start="2">
+<li>输入<strong>admin@tutorial-network</strong>作为智能合约的名称。</li>
+<li>选择<strong>决不</strong>询问是否在生成的API中使用名称空间时使用名称空间。</li>
+<li>选择<strong>没有</strong>当被问及是否保护生成的API。</li>
+<li>选择<strong>是</strong>当被问及是否启用事件发布时。</li>
+<li>选择<strong>没有</strong>当被问及是否启用TLS安全。</li>
+</ol>
+<p>总体的输出结果如下：</p>
+<pre><code class="java">? Enter the name of the business network card to use: admin@tutorial-network
+? Specify if you want namespaces in the generated REST API: never use namespaces
+? Specify if you want to use an API key to secure the REST API: No
+? Specify if you want to enable authentication for the REST API using Passport: No
+? Specify if you want to enable event publication over WebSockets: Yes
+? Specify if you want to enable TLS security for the REST API: No
+
+To restart the REST server using the same options, issue the following command:
+   composer-rest-server -c admin@tutorial-network -n never -w true
+
+Discovering types from business network definition ...
+Discovered types from business network definition
+Generating schemas for all types in business network definition ...
+Generated schemas for all types in business network definition
+Adding schemas for all types to Loopback ...
+Added schemas for all types to Loopback
+Web server listening at: http://localhost:3000
+Browse your REST API at http://localhost:3000/explorer
+</code></pre>
+<p>生成的API连接到部署的区块链和业务网络，打开浏览器，输入Url：<code>http://localhost:3000/explorer</code> 进行访问REST API的web页面。RESP API封装了业务逻辑、数据模型、事务的GET和POST的方法。通过此页面可以进行报文请求及响应。请求的报文会直接调用智能合约上的代码，并执行。通过<code>blockchain-explorer</code>等工具可以看到具体的写入区块和交易。</p>
+<h2 id="Step-6-生成Angular客户端"><a href="#Step-6-生成Angular客户端" class="headerlink" title="Step 6-生成Angular客户端"></a>Step 6-生成Angular客户端</h2><p>Hyperledger Composer还可以生成针对REST API运行的Angular应用程序。同样，要创建您的Angular应用程序，请导航至<code>tutorial-network</code>根目录。</p>
+<ol>
+<li>运行以下命令</li>
+</ol>
+<pre><code>yo hyperledger-composer:angular
+</code></pre><ol start="2">
+<li>选择<strong>是</strong>当被要求连接到运行业务网络时</li>
+<li>输入标准<strong>package.json</strong>问题（项目名称，说明，作者姓名，作者电子邮件，许可证）</li>
+<li>输入智能合约名称<strong>admin@tutorial-network</strong></li>
+<li>选择<strong>连接到现有的REST API</strong></li>
+<li>输入<strong><a href="http://localhost" target="_blank" rel="external">http://localhost</a></strong>为REST服务器地址</li>
+<li>输入<strong>3000</strong>用于服务器端口</li>
+<li>选择<strong>名称空间不被使用</strong></li>
+</ol>
+<blockquote>
+<p>最后执行完步骤8后，Angular generator将为该项目创建并安装所有依赖项。</p>
+</blockquote>
+<p>最后通过<code>npm start</code>的命令启动该angular应用，访问地址为：<code>http://localhost:4200</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过以上步骤，完成了智能合约的生成–&gt;代码开发–&gt;安装发布–&gt;REST API服务端创建–&gt;客户端的创建整体流程。在新的智能合约的开发中可以参考此流程。<br>感谢开源组织为我们提供了整体的区块链解决方案，合约创建，部署也方便，接下来就是区块链节点的统一管理了，此时的hyperledger又提供了一个很强大的开源工程<code>cello</code>，下一步在进行研究。</p>
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>为了方便交流，特此荒废了多年的QQ重新建立起QQ群:<code>788572702</code>，QQ群的二维码懒人加入为方式，则打开手机QQ扫一扫，一键申请：<img src="/img/qq_qr.png" alt=""></p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+  <!-- /上述代码 -->
+  
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+
+      <!-- http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif
+           因为本 hexo 生成的博客所用的 theme 的 a:hover 带动画效果，
+         为了在让打赏按钮显示效果正常 而 添加了以下几行 css，
+         嵌入其它博客时不一定要它们。 -->
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+      <!-- /让打赏按钮的效果显示正常 而 添加的几行 css 到此结束 -->
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      \(^o^)/
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+      
+    
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+    
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+        
+       <br>
+
+    <a href="/img/weixin_pay_qr.png" title="用微信扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/weixin_pay_qr.png" title="微信打赏 Colin" height="190px" width="auto"/>
+    </a>
+        
+          
+
+    <a href="/img/ali_pay_qr.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="/img/ali_pay_qr.png" title="支付宝打赏 Colin" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      Enjoy it ? Donate me !  欣赏此文？求支持！
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+
+    var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+    }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+  
+
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/">Hyperledger Composer教程-创建、开发、发布智能合约</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Panjie.Yan 的个人博客">Panjie.Yan</a></p>
+        <p><span>发布时间:</span>2018年05月28日 - 21时13分</p>
+        <p><span>最后更新:</span>2018年06月04日 - 23时22分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/" title="Hyperledger Composer教程-创建、开发、发布智能合约">https://ittomato.github.io/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://ittomato.github.io/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/　　作者: Panjie.Yan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/06/01/Hyperledger Composer的建模语言详解/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Hyperledger Composer的建模语言详解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前提条件"><span class="toc-number">1.</span> <span class="toc-text">前提条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综述"><span class="toc-number">2.</span> <span class="toc-text">综述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-1-创建智能合约框架"><span class="toc-number">3.</span> <span class="toc-text">Step 1-创建智能合约框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-2-编写智能合约代码"><span class="toc-number">4.</span> <span class="toc-text">Step 2-编写智能合约代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加模型文件"><span class="toc-number">4.1.</span> <span class="toc-text">添加模型文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加业务逻辑"><span class="toc-number">4.2.</span> <span class="toc-text">添加业务逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加访问控制"><span class="toc-number">4.3.</span> <span class="toc-text">添加访问控制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-3-生成智能合约归档"><span class="toc-number">5.</span> <span class="toc-text">Step 3-生成智能合约归档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-4-发布智能合约程序"><span class="toc-number">6.</span> <span class="toc-text">Step 4-发布智能合约程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-5-生成REST服务器"><span class="toc-number">7.</span> <span class="toc-text">Step 5-生成REST服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-6-生成Angular客户端"><span class="toc-number">8.</span> <span class="toc-text">Step 6-生成Angular客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">9.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后续"><span class="toc-number">10.</span> <span class="toc-text">后续</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/" data-title="Hyperledger Composer教程-创建、开发、发布智能合约" data-url="https://ittomato.github.io/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"null"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/06/01/Hyperledger Composer的建模语言详解/" title="上一篇: Hyperledger Composer的建模语言详解">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/" title="下一篇: 基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/20181217/">子墨与杰</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/04/hyperledger composer的cryptogen配置文件详解/">Hyperledger Composer的cryptogen、configtxgen等配置文件详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/01/Hyperledger Composer的建模语言详解/">Hyperledger Composer的建模语言详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/28/Hyperledger Fabric教程-创建、开发、发布智能合约/">Hyperledger Composer教程-创建、开发、发布智能合约</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/02/基于hlfv的区块链为底层搭建具体的业务网络架构教程/">基于Hyperledger Composer的区块链为底层搭建具体的业务网络架构教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/07/Hyperledger Fabric分布式账本介绍/">Hyperledger Fabric分布式账本介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/06/区块链微讲堂系列之hyperledger Fabric/">区块链微讲堂系列之hyperledger fabric</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/04/Hyperledger Fabri教程-安装blockchain explorer4/">Hyperledger Composer教程4-安装blockchain explorer</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/03/Hyperledger Fabric教程-安装开发环境3/">Hyperledger Composer教程3-安装开发环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/02/Hyperledger Fabric教程-安装前提条件2/">Hyperledger Composer教程2-安装前提条件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/01/Hyperledger Fabric教程-Hyperledger Fabric 的简介1/">Hyperledger Fabric教程1-Hyperledger Fabric 的简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/">Nginx反向代理解决产品不支持JDK1.6版本的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/14/SSL和TLS的技术原理浅谈/">SSL和TLS的技术原理浅谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/04/安全HTTPS/">安全HTTPS相关杂谈</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/03/TLS的握手流程/">TLS的握手流程-密钥协商与身份认证过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/20/18/">使用nginx反向代码配置网站教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/17/17/">使用impress.js打造酷炫PPT演示文稿教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/restify文档/">restify打造强悍的REST类的Web Service系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/13/16/">异步编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/24/13/">监控Linux用户登录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/11/">python爬虫 高清无码图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/10/">wall crontab 定时服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/9/">MyEclipse中右键项目Build Path菜单无子菜单的解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/8/">ibatis 自定义sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/7/">代码关闭dblink产生的session会话连接</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/19/6/">多主机数据库表数据同步</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/5/">自动化adb push新大陆N900测试</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy;2014 - 2019 Panjie.Yan
+            </div>
+            <!--
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme 
+            </div>
+            -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >读者到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 109;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+<script>
+  (function(){
+  var bp = document.createElement('script');
+      bp.src = '//push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
   </div>
 </body>
 </html>

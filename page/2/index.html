@@ -1,15 +1,1042 @@
-<%- partial('_partial/head') %>
+<!DOCTYPE html>
+<html>
+<head>
+  <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='/img/wx_pic.jpg' />
+  </div>
+  <meta charset="utf-8">
+  
+  <title>程序小兵</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="程序小兵">
+<meta property="og:url" content="https://ittomato.github.io/page/2/index.html">
+<meta property="og:site_name" content="程序小兵">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程序小兵">
+  
+    <link rel="alternative" href="/atom.xml" title="程序小兵" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/img/head.jpg">
+  
+    
+    
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: true,
+          isPost: false,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: true
+      }
+  </script>
+</head>
 <body>
   <div id="container">
     <div class="left-col">
-    <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Panjie.Yan</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">专注区块链研究</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives">所有文章</a></li>
+                        
+                            <li><a href="/about">捐助</a></li>
+                        
+                            <li><a href="/tags">标签云</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                            
+                                <a class="fl facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                            
+                                <a class="fl google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/hyperledger/" style="font-size: 20px;">hyperledger</a> <a href="/tags/ide/" style="font-size: 10px;">ide</a> <a href="/tags/it/" style="font-size: 20px;">it</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/oracle/" style="font-size: 16.67px;">oracle</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/thinking/" style="font-size: 13.33px;">thinking</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/心念/" style="font-size: 10px;">心念</a> <a href="/tags/程序小兵/" style="font-size: 16.67px;">程序小兵</a> <a href="/tags/诗歌/" style="font-size: 10px;">诗歌</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://ittomato.lofter.com/">程序小兵</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">自由职业者、极客、程序小兵</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
     <div class="mid-col">
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-      <div class="body-wrap"><%- body %></div>
-      <%- partial('_partial/footer') %>
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Panjie.Yan</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">专注区块链研究</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives">所有文章</a></li>
+                
+                    <li><a href="/about">捐助</a></li>
+                
+                    <li><a href="/tags">标签云</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ittomato" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://github.com/ittomato" title="zhihu">zhihu</a>
+                    
+                        <a class="facebook" target="_blank" href="/www.zeuslook.com" title="facebook">facebook</a>
+                    
+                        <a class="google" target="_blank" href="https://github.com/ittomato" title="google">google</a>
+                    
+                </div>
+            </nav>
+        </header>                
     </div>
-    <%- partial('_partial/after-footer') %>
+</nav>
+      <div class="body-wrap">
+  
+    <article id="post-Hyperledger Fabric教程-Hyperledger Fabric 的简介1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/01/Hyperledger Fabric教程-Hyperledger Fabric 的简介1/" class="article-date">
+      <time datetime="2018-02-01T13:13:14.000Z" itemprop="datePublished">2018-02-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/01/Hyperledger Fabric教程-Hyperledger Fabric 的简介1/">Hyperledger Fabric教程1-Hyperledger Fabric 的简介</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p><code>Hyperledger Composer</code>是一个广泛的，开放的开发工具集和框架，使开发区块链应用程序更容易。我们的主要目标是加快实现价值的时间，并使区块链应用程序与现有业务系统的集成变得更加容易。您可以使用<code>Composer</code>快速开发用例，并在几周内部署区块链解决方案，而不是几个月。<code>Composer</code>允许您对业务网络进行建模，并将现有系统和数据与区块链应用程序集成。</p>
+<p><code>Hyperledger Composer</code>支持现有的<code>Hyperledger Fabric</code>区块链基础架构和运行时，支持可插入的区块链一致性协议，以确保交易根据指定的业务网络参与者的策略进行验证。</p>
+<p>日常应用程序可以使用来自商业网络的数据，为最终用户提供简单和受控的接入点。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hyperledger/">hyperledger</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2018/02/01/Hyperledger Fabric教程-Hyperledger Fabric 的简介1/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Nginx反向代理解决安心签不支持JDK1.6版本的解决方案" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/" class="article-date">
+      <time datetime="2017-12-15T13:13:14.000Z" itemprop="datePublished">2017-12-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/">Nginx反向代理解决产品不支持JDK1.6版本的解决方案</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <blockquote>
+<p>某个项目在客户对接中，对JDK有要求，因与服务器的通信支持TLS1.1，且只有JDK1.7及以上版本支持TLS1.1，对于客户旧原有的系统不支持TLS1.1的JDK1.6的，存在不兼容问题。为了满足客户接入需求及不更改产品服务通信安全的前提下，引入了代理服务器作为转发节点，解决http-&gt;https的转变。从而衍生出，适应于所有接入服务中需要将http-&gt;https的转发请求的模式。</p>
+</blockquote>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本教程通过安装<em>Nginx</em>软件、新建Nginx需要的<code>.crt</code>、<code>.key</code>、<code>.pem</code>格式的证书，再修改默认的Nginx的配置文件<code>Nginx.conf</code>。如果已经准备好Nginx所需环境及证书，则可直接查看<code>Nginx.conf</code>，具体步骤如下：<br><!-- MarkdownTOC --></p>
+<ul>
+<li>Nginx安装<ul>
+<li>安装Zlib</li>
+<li>安装Pcre库</li>
+<li>安装Openssl</li>
+<li>安装Nginx</li>
+</ul>
+</li>
+<li>Nginx配置https所需证书</li>
+<li>Nginx.conf配置文件<ul>
+<li>解决http-&gt;https转化</li>
+<li>解决https-&gt;http转化</li>
+</ul>
+</li>
+</ul>
+<!-- /MarkdownTOC -->
+<h3 id="Nginx安装"><a href="#Nginx安装" class="headerlink" title="Nginx安装"></a>Nginx安装</h3><p><em>Nginx</em>依赖以下模块，因此先安装一下依赖库，再最后安装<em>Nginx</em>：</p>
+<ul>
+<li><code>gzip</code>模块需要<code>zlib</code>库</li>
+<li><code>rewrite</code>模块需要<code>pcre</code>库</li>
+<li><code>ssl</code>功能需要<code>openssl</code>库</li>
+</ul>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/周记/">周记</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/12/15/Nginx反向代理解决安心签不支持JDK1.6版本的解决方案/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-SSL和TLS的技术原理浅谈" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/14/SSL和TLS的技术原理浅谈/" class="article-date">
+      <time datetime="2017-08-14T13:13:14.000Z" itemprop="datePublished">2017-08-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/14/SSL和TLS的技术原理浅谈/">SSL和TLS的技术原理浅谈</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>程序员小明想给隔壁红写信表白，但是又不想让信件内容被其他人看见，希望只有小红才能看见信件内容，迫不及待的小明的大脑飞快运转起来。</p>
+<h2 id="预备基础知识"><a href="#预备基础知识" class="headerlink" title="预备基础知识"></a>预备基础知识</h2><ul>
+<li>对称密钥加密（Symmetric Key Cryptography）：加密与解密使用相同密钥。对称加密算法的特点是算法公开、计算量小、加密速度快、加密效率高。缺点是交易双方都使用同样钥匙，安全性得不到保证。</li>
+<li>非对称密钥加密（Asymmetric Key Cryptography）：加密与解密使用不同密钥。非对称加密使用一对秘钥，一个用来加密，一个用来解密，而且公钥是公开的，秘钥是自己保存的，其安全性更好。缺点是加密和解密花费时间长、速度慢，只适合对少量数据进行加密。</li>
+<li>哈希算法（Hash Algorithm）：又称散列算法，杂凑算法，是一种从任意文件中创造小的数字「指纹」的方法。与指纹一样，散列算法就是一种以较短的信息来保证文件唯一性的标志，这种标志与文件的每一个字节都相关，而且难以找到逆向规律。因此，当原有文件发生改变时，其标志值也会发生改变，从而告诉文件使用者当前的文件已经不是你所需求的文件。</li>
+</ul>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/程序小兵/">程序小兵</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/08/14/SSL和TLS的技术原理浅谈/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-安全HTTPS" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/04/安全HTTPS/" class="article-date">
+      <time datetime="2017-06-04T13:13:14.000Z" itemprop="datePublished">2017-06-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/04/安全HTTPS/">安全HTTPS相关杂谈</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>所谓的HTTPS（HypertextTransfer Protocol Secure）即安全的HTTP『安全的超文本协议』。HTTPS的安全基础是安全套接层（Secure Sockets Layer，SSL），确保了传统的HTTP以明文传输的被窃取偷窥的风险。HTTP工作在应用层（OSI模型的最高层），SSL协议工作在一个较低的子层，位于TCP/IP协议和HTTP协议之间。在HTTP报文传输前对其加密，并在到达时对其解密。严格地讲，HTTPS并不是一个单独的协议，而是工作在SSL协议上的HTTP协议。在现有的基础上，出现了TLS协议，对SSL进行了扩充，是SSL的继任者，但两者区别不大。</p>
+<p>我们之所以采用HTTPS来替换HTTP，主要目的为了建立安全通道、保证数据传输的安全，同时可以通过签名技术确认通信双方的身份。谷歌和苹果2大互联网巨头公司已经放文，全面推广HTTPS协议。在单向认证和双向认证中的区别则是客户端有无证书。客户端与服务端都存在证书者称之为双向认证；仅服务器有证书者，例如HTTPS站点，则为单向认证。</p>
+<blockquote>
+<p>如何确保我们的协议是安全的？</p>
+</blockquote>
+<p>主要的原理类似『数字信封』，基于SSL协议通讯的双方利用非对称加密算法，协商一个用于对称加密的密钥（很难破解的随机数）；密钥协商完毕，通讯双方用该密钥对数据进行对称加密，如3DES， AES等等，从而保证的数据的安全。</p>
+<p>这里简单说明下什么是公开密钥加密：</p>
+<p>公开密钥加密，也叫做『非对称加密』，顾名思义，采用的加密和解密不是用同一个密钥进行密码运算，而是有两个不同的密钥：加密密钥和解密密钥。或者换句更书面化的解释则为：公开密钥『公钥』与私有密钥『私钥』。这2个密钥是数学相关的（通过数学椭圆曲线算法经过一定的数学运算产生的一对具有数学逻辑关联极难被反向破解的一对『数字串』。用户用『公钥』进行加密数据原文后，只能由对应的『私钥』进行解密。当前公开密钥加密有著名的RSA算法及国内与之匹配版本的SM2。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/程序小兵/">程序小兵</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/06/04/安全HTTPS/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-TLS的握手流程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/03/TLS的握手流程/" class="article-date">
+      <time datetime="2017-06-03T13:13:14.000Z" itemprop="datePublished">2017-06-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/03/TLS的握手流程/">TLS的握手流程-密钥协商与身份认证过程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>在安全HTTPS中提及到的密钥协商（安全通讯前的准备工作）中，包含了身份认证和密钥协商2大过程如下，其中SSL协议包含记录协议和握手协议，在握手协议中协商通讯传输的的对称加密密码、压缩算法、加密算法等，具体的步骤如下：</p>
+<h3 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h3><p>s客户端往服务器端发ClientHello消息</p>
+<p>消息特点：该消息是客户端连接服务器端时发送的第一个消息。</p>
+<p>消息构成：</p>
+<p>(1).   使用的TLS协议版本。</p>
+<p>(2).    随机数；用于计算对称加密时的“主密码”。</p>
+<p>(3).   会话ID；重连时有用，可为空。</p>
+<p>(4).   加密算法列表；客户端支持的加密算法列表，并按照客户端的偏好从前往后排。</p>
+<p>(5).   压缩算法列表；客户端支持的压缩算法列表，并按照客户端的偏好从前往后排。</p>
+<p>(6).   扩展信息。</p>
+<p>消息作用：用于发起会话、交换随机数、协商加密算法、压缩算法等。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/程序小兵/">程序小兵</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/06/03/TLS的握手流程/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-18" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/20/18/" class="article-date">
+      <time datetime="2016-06-20T12:34:21.000Z" itemprop="datePublished">2016-06-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/20/18/">使用nginx反向代码配置网站教程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>最近在打造公司网站，由于我没使用想tomcat、weblogic这样的web容器，我网站访问需要带端口才允许访问，例如:<code>localhost:3003</code>，部署到生产上的时候，就需要通过域名<code>www.xxx.com:3003</code>来访问，看起来很变扭，而且对用户来说，3003端口是透明的，因此需要反向代理服务将去路由到指定的端口，用户还是照样访问<code>www.xxx.com</code>网。通过简单的配置，就可以很好的使用Nginx的特征，这点真正的体现Nginx的可用性。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/it/">it</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/06/20/18/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-17" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/17/17/" class="article-date">
+      <time datetime="2016-06-17T11:34:21.000Z" itemprop="datePublished">2016-06-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/17/17/">使用impress.js打造酷炫PPT演示文稿教程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>最近受人之拖给即将毕业的学生做个小讲座，谈谈职业规划，面试技巧，抛弃了传统的PPT格式，给他们带来酷炫点的文稿演示。</p>
+<p>这里只是个库使用的教程，该ppt是html形式，所以下面就html的布局进行了分解讲解</p>
+<hr>
+<p>欢迎到此一游</p>
+<p>这里能让你进一步学习你感兴趣的东西</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/it/">it</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/06/17/17/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-restify文档" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/13/restify文档/" class="article-date">
+      <time datetime="2016-06-13T01:34:21.000Z" itemprop="datePublished">2016-06-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/13/restify文档/">restify打造强悍的REST类的Web Service系统</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <blockquote>
+<p>restify是允许你打造正确的REST类的web service的node.js特色模块。它或多或少有意的参照express上具体的API去写node.js的web应用。</p>
+</blockquote>
+<h2 id="为什么使用restify而不是express"><a href="#为什么使用restify而不是express" class="headerlink" title="为什么使用restify而不是express?"></a>为什么使用restify而不是express?</h2><p>相比其他问题，这个问题问我的人更多了，因此，我将正好在这文章最前面来说明。</p>
+<p><em>Express</em>的使用案例是把浏览器应用程序作为目标而且包含了像<em>templating</em>和<em>rendering</em>功能的很多函数来支撑。<em>Restify</em>却没有。</p>
+<p><em>Restify</em>的存在是为了让你制定可维护和看得见的严谨的API服务。如果你运行的平台支持<em>DTrace</em>, 那么<em>Restify</em>带来的自动<em>DTrace</em>会支持你所有的handlers。</p>
+<p>简言之，我之所以写<em>restify</em>是我需要一个在使用http交互中能给我绝对控制性和全面观察我应用的潜在因素和特征的框架。如果你不需要这些或者不关心这些方面，那么<em>restify</em>可能不适合你。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/it/">it</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinking/">thinking</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/06/13/restify文档/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-16" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/13/16/" class="article-date">
+      <time datetime="2016-06-13T01:34:21.000Z" itemprop="datePublished">2016-06-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/13/16/">异步编程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>JavaScript中，函数作为一等公民，使用是哪个非常自由，无论调用它或者作为参数，或者作为返回值均可。函数的灵活性是JavaScript比较吸引人的地方之一，它与古老的Lisp颇具渊源。在通常的语言中，函数的参数只接受的数据类型或者对象引用，返回值也只是基本数据类型和对象引用。例如：</p>
+<pre><code>function foo(x){
+    return x;
+}
+</code></pre>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/it/">it</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinking/">thinking</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/06/13/16/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-13" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/24/13/" class="article-date">
+      <time datetime="2016-05-24T00:56:11.000Z" itemprop="datePublished">2016-05-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/24/13/">监控Linux用户登录</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>监控Linux系统用户登录数，如果超出异常，则终端报警 <strong>咚咚咚咚咚咚咚咚咚咚咚咚咚咚</strong></p>
+<p>目前定义了1~2个人登录，则表示系统安全无障碍；若发现大于2个人登录则报警~~</p>
+<p>于是，我的手机装个<strong>ssh</strong>登录工具(ConnectBot)，远程登录到服务器，然后用<strong>Android</strong>手机做小屏幕进行实时监控。反正是快报废的手机，卡的不行，但是装个ssh完全没压力。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/05/24/13/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    </nav>
+  
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy;2014 - 2019 Panjie.Yan
+            </div>
+            <!--
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme 
+            </div>
+            -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >读者到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 109;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+<script>
+  (function(){
+  var bp = document.createElement('script');
+      bp.src = '//push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
   </div>
 </body>
 </html>
