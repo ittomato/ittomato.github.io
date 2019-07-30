@@ -144,7 +144,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/hyperledger/" style="font-size: 20px;">hyperledger</a> <a href="/tags/ide/" style="font-size: 10px;">ide</a> <a href="/tags/it/" style="font-size: 20px;">it</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/oracle/" style="font-size: 16.67px;">oracle</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/thinking/" style="font-size: 13.33px;">thinking</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/心念/" style="font-size: 10px;">心念</a> <a href="/tags/程序小兵/" style="font-size: 16.67px;">程序小兵</a> <a href="/tags/诗歌/" style="font-size: 10px;">诗歌</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+                        <a href="/tags/hyperledger/" style="font-size: 20px;">hyperledger</a> <a href="/tags/ide/" style="font-size: 10px;">ide</a> <a href="/tags/it/" style="font-size: 20px;">it</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/oracle/" style="font-size: 16.67px;">oracle</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/thinking/" style="font-size: 13.33px;">thinking</a> <a href="/tags/zeusjr/" style="font-size: 13.33px;">zeusjr</a> <a href="/tags/周记/" style="font-size: 10px;">周记</a> <a href="/tags/心念/" style="font-size: 10px;">心念</a> <a href="/tags/程序小兵/" style="font-size: 16.67px;">程序小兵</a> <a href="/tags/诗歌/" style="font-size: 10px;">诗歌</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
                     </div>
                 </section>
                 
@@ -863,10 +863,10 @@
 
 
   
-    <article id="post-16" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-restify文档" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/06/13/16/" class="article-date">
+      <a href="/2016/06/13/restify文档/" class="article-date">
       <time datetime="2016-06-13T01:34:21.000Z" itemprop="datePublished">2016-06-13</time>
 </a>
     </div>
@@ -880,7 +880,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/13/16/">异步编程</a>
+      <a class="article-title" href="/2016/06/13/restify文档/">restify打造强悍的REST类的Web Service系统</a>
     </h1>
   
 
@@ -890,11 +890,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>JavaScript中，函数作为一等公民，使用是哪个非常自由，无论调用它或者作为参数，或者作为返回值均可。函数的灵活性是JavaScript比较吸引人的地方之一，它与古老的Lisp颇具渊源。在通常的语言中，函数的参数只接受的数据类型或者对象引用，返回值也只是基本数据类型和对象引用。例如：</p>
-<pre><code>function foo(x){
-    return x;
-}
-</code></pre>
+              <blockquote>
+<p>restify是允许你打造正确的REST类的web service的node.js特色模块。它或多或少有意的参照express上具体的API去写node.js的web应用。</p>
+</blockquote>
+<h2 id="为什么使用restify而不是express"><a href="#为什么使用restify而不是express" class="headerlink" title="为什么使用restify而不是express?"></a>为什么使用restify而不是express?</h2><p>相比其他问题，这个问题问我的人更多了，因此，我将正好在这文章最前面来说明。</p>
+<p><em>Express</em>的使用案例是把浏览器应用程序作为目标而且包含了像<em>templating</em>和<em>rendering</em>功能的很多函数来支撑。<em>Restify</em>却没有。</p>
+<p><em>Restify</em>的存在是为了让你制定可维护和看得见的严谨的API服务。如果你运行的平台支持<em>DTrace</em>, 那么<em>Restify</em>带来的自动<em>DTrace</em>会支持你所有的handlers。</p>
+<p>简言之，我之所以写<em>restify</em>是我需要一个在使用http交互中能给我绝对控制性和全面观察我应用的潜在因素和特征的框架。如果你不需要这些或者不关心这些方面，那么<em>restify</em>可能不适合你。</p>
           
       
     </div>
@@ -905,12 +907,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/it/">it</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinking/">thinking</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/it/">it</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinking/">thinking</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a  href="/2016/06/13/16/#more">more >></a>
+          <a  href="/2016/06/13/restify文档/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
