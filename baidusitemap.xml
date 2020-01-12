@@ -4,6 +4,40 @@
 
     
   <url>
+    <loc>https://ittomato.github.io/2020/01/11/69MediaPlayerService/</loc>
+    <lastmod>2020-01-12T06:32:26.039Z</lastmod>
+    <data>
+        <display>
+        <title>69视频播放器Vedio的技术服务支持</title>
+        <pubTime>2020-01-11T07:52:41.000Z</pubTime>
+        
+        <tag>69视频播放器Vedio</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://ittomato.github.io/2020/01/11/69MediaPlayerPrivate/</loc>
+    <lastmod>2020-01-12T06:32:18.454Z</lastmod>
+    <data>
+        <display>
+        <title>69视频播放器Vedio的隐私政策</title>
+        <pubTime>2020-01-11T05:14:00.000Z</pubTime>
+        
+        <tag>69视频播放器Vedio</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://ittomato.github.io/2019/07/16/ZeusJrPrivate/</loc>
     <lastmod>2019-07-30T05:37:57.957Z</lastmod>
     <data>
@@ -304,9 +338,9 @@
         <title>python爬虫 高清无码图片</title>
         <pubTime>2016-05-19T08:33:10.000Z</pubTime>
         
-        <tag>it</tag>
-         
         <tag>python</tag>
+         
+        <tag>it</tag>
          
          
            
@@ -497,9 +531,9 @@
         <title>wall crontab 定时服务</title>
         <pubTime>2016-05-19T07:52:41.000Z</pubTime>
         
-        <tag>linux</tag>
-         
         <tag>it</tag>
+         
+        <tag>linux</tag>
          
          
            
